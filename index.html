@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#2a7d38">
+<title>Offshore English Garden</title>
+<style>
+:root{color-scheme:light dark;--bg:#f3f7f4;--c:#fff;--t:#16251b;--m:#5a6a5f;--g:#2e8b3d;--b:#1f6fb2;--br:#7a5230;--y:#e8b923;--bd:#dce6de;--hl:#eaf3fb;--sh:0 2px 12px #0f2a1a14}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1613;--c:#18221c;--t:#e5eee7;--m:#9aada0;--g:#5cc26e;--b:#6db3ee;--bd:#2a3a30;--hl:#162838;--sh:none}}
+:root[data-theme="dark"]{--bg:#0f1613;--c:#18221c;--t:#e5eee7;--m:#9aada0;--g:#5cc26e;--b:#6db3ee;--bd:#2a3a30;--hl:#162838;--sh:none}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--t);padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#2a7d38,#1f6fb2);color:#fff;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px}
+header h1{margin:0;font-size:clamp(14px,3.8vw,19px);letter-spacing:.3px}
+header div{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;margin-top:4px}
+nav{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:var(--c);border-bottom:1px solid var(--bd);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:none;border:0;background:var(--hl);color:var(--b);padding:9px 14px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer;transition:.2s}
+nav button.on{background:var(--b);color:#fff;box-shadow:0 2px 8px #1f6fb255}
+main{max-width:860px;margin:0 auto;padding:14px}
+main>*{animation:up .3s ease both}@keyframes up{from{opacity:0;transform:translateY(8px)}}
+.card{background:var(--c);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:var(--sh)}
+.card h2,.card h3{margin:.2em 0 .5em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:12px}
+.k{background:var(--c);border:1px solid var(--bd);border-left:5px solid var(--b);padding:10px 12px;border-radius:12px;font-size:13px;color:var(--m)}.k b{font-size:24px;display:block;color:var(--g)}
+.card button{background:var(--g);color:#fff;border:0;padding:11px 16px;min-height:44px;border-radius:10px;font:inherit;cursor:pointer;margin:4px 4px 4px 0;transition:transform .1s,filter .2s}
+.card button:hover{filter:brightness(1.08)}.card button:active{transform:scale(.97)}
+.card button.s{background:var(--br)}.card button.d{background:#b83a3a}
+.opt{display:block;width:100%;text-align:left;background:var(--hl)!important;color:var(--t)!important;border:1px solid var(--bd)!important}
+input,select,textarea{font:inherit;font-size:16px;padding:10px;border:1px solid var(--bd);border-radius:10px;margin:3px 0;background:var(--c);color:var(--t);max-width:100%}
+.g{color:var(--g)}.r{color:#d0473a}
+.bar{height:12px;background:var(--bd);border-radius:6px;overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--y));transition:width .5s}
+.w{border-bottom:1px solid var(--bd);padding:10px 4px;cursor:pointer}.w .m{display:none;color:var(--b)}.w.open .m{display:block}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:8px 6px;border-bottom:1px solid var(--bd);text-align:left}
+.sway{transform-origin:150px 260px;animation:sw 4s ease-in-out infinite}@keyframes sw{50%{transform:rotate(1.6deg)}}.wilt{filter:saturate(.6)}
+#cr{position:fixed;right:10px;bottom:calc(6px + env(safe-area-inset-bottom,0px));font-size:11px;color:var(--m);background:var(--bg);opacity:.9;padding:1px 8px;border-radius:6px;pointer-events:none;z-index:30}
+.fc{perspective:1000px;height:230px;cursor:pointer;margin:10px 0}.ff{position:relative;height:100%;transition:transform .5s;transform-style:preserve-3d}.fc.flip .ff{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;border-radius:18px;border:2px solid var(--bd);background:var(--c);box-shadow:var(--sh);font-size:24px}.face small{font-size:15px;color:var(--m);margin-top:6px}.face.back{transform:rotateY(180deg);background:var(--hl)}
+.hero{background:linear-gradient(135deg,#2e8b3d,#1c8a72 60%,#1f6fb2);color:#fff;border-radius:22px;padding:20px;margin-bottom:12px;box-shadow:var(--sh)}
+.hero h2{margin:0 0 4px;font-size:clamp(20px,5vw,26px)}.hero p{margin:4px 0;opacity:.95}
+.cta{display:block;width:100%;border:0;border-bottom:5px solid #cfe3d3;background:#fff;color:#1f7a33;font:inherit;font-weight:800;font-size:18px;letter-spacing:1.2px;padding:15px;border-radius:16px;cursor:pointer;margin-top:14px;transition:transform .1s,border-bottom-width .1s}
+.cta:active{transform:translateY(3px);border-bottom-width:2px}
+.hero .bar{background:#ffffff40}.hero .bar i{background:#fff}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)}.row:last-child{border:0}
+.row span{flex:1}.card .row button{margin:0;padding:8px 14px;min-height:40px}
+.stack{display:flex;height:16px;border-radius:8px;overflow:hidden;background:var(--bd);margin:8px 0}.stack i{display:block;height:100%;transition:width .5s}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 10px}
+.b1{fill:var(--g)}.b0{fill:var(--bd)}.b2{fill:var(--y)}.lb{font-size:9px;fill:var(--m)}
+.card h4{margin:14px 0 4px}
+@media(max-width:520px){main{padding:10px}.card{padding:14px;border-radius:14px}td,th{font-size:12.5px;padding:6px 3px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header><h1>OFFSHORE ENGLISH GARDEN – KHU VƯỜN TIẾNG ANH CỦA TÔI</h1><div id="hd"></div></header>
+<nav id="nav"></nav><main id="main"></main><div id="cr">Bản quyền © 2026 Đoàn Linh</div>
+<script id="seed" type="application/json"></script>
+<script>
+const K='oeg',TABS=[['home','Trang chủ'],['garden','Khu vườn của tôi'],['lesson','Bài học hôm nay'],['learn','Học từ mới'],['flash','Flashcard'],['review','Ôn tập'],['test','Kiểm tra'],['kho','Kho từ tiếng Anh'],['road','Lộ trình 120 ngày'],['stats','Thống kê'],['set','Cài đặt']];
+const DEF=[
+['engineer','kỹ sư','/ˌendʒɪˈnɪr/','n','Cơ bản','I am an engineer.','Tôi là kỹ sư.'],
+['offshore','ngoài khơi','/ˌɒfˈʃɔːr/','adj','Cơ bản','We build an offshore platform.','Chúng tôi chế tạo một giàn ngoài khơi.'],
+['platform','giàn (khoan/khai thác)','/ˈplætfɔːrm/','n','Cơ bản','The platform is in Vung Tau.','Giàn nằm ở Vũng Tàu.'],
+['company','công ty','/ˈkʌmpəni/','n','Cơ bản','I work for a company.','Tôi làm việc cho một công ty.'],
+['work','làm việc','/wɜːrk/','v','Cơ bản','I work on painting.','Tôi làm việc về sơn.'],
+['painting','sơn, công tác sơn','/ˈpeɪntɪŋ/','n','Cơ bản','I check the painting.','Tôi kiểm tra công tác sơn.'],
+['scaffolding','giàn giáo','/ˈskæfoʊldɪŋ/','n','Cơ bản','The scaffolding is ready.','Giàn giáo đã sẵn sàng.'],
+['holiday test','kiểm tra lỗ hổng màng sơn bằng điện áp','/ˈhɒlədeɪ test/','n','Coating Inspection'],
+['porosity','độ rỗng','/pɔːˈrɒsəti/','n','Coating Inspection'],
+['pinholes','lỗ kim (trên màng sơn)','/ˈpɪnhoʊlz/','n','Coating Inspection'],
+['blistering','phồng rộp','/ˈblɪstərɪŋ/','n','Coating Inspection'],
+['peeling','bong tróc','/ˈpiːlɪŋ/','n','Coating Inspection'],
+['delamination','tách lớp','/diːˌlæmɪˈneɪʃn/','n','Coating Inspection'],
+['cracking','nứt','/ˈkrækɪŋ/','n','Coating Inspection'],
+['chalking','phấn hóa','/ˈtʃɔːkɪŋ/','n','Coating Inspection'],
+['adhesion test','thử độ bám dính','/ədˈhiːʒn test/','n','Coating Inspection'],
+['pull-off test','thử kéo bám dính','/ˈpʊl ɔːf test/','n','Coating Inspection'],
+['surface profile measurement','đo độ nhám bề mặt','/ˈsɜːrfɪs ˈproʊfaɪl ˈmeʒərmənt/','n','Coating Inspection'],
+['DFT measurement','đo chiều dày màng sơn khô','/ˌdiː ef ˈtiː ˈmeʒərmənt/','n','Coating Inspection'],
+['inspection report','báo cáo kiểm tra','/ɪnˈspekʃn rɪˈpɔːrt/','n','Coating Inspection'],
+['coating inspector','nhân viên kiểm tra sơn','/ˈkoʊtɪŋ ɪnˈspektər/','n','Coating Inspection'],
+['paint manufacturer','nhà sản xuất sơn','/peɪnt ˌmænjuˈfæktʃərər/','n','Coating Inspection'],
+['touch-up','sơn dặm, sơn vá','/ˈtʌtʃ ʌp/','n','Coating Inspection'],
+['fabrication','chế tạo','/ˌfæbrɪˈkeɪʃn/','n','Offshore Fabrication'],
+['weld joint','mối hàn','/weld dʒɔɪnt/','n','Offshore Fabrication'],
+['weld seam','đường hàn','/weld siːm/','n','Offshore Fabrication'],
+['reinstatement','phục hồi (hoàn trả hiện trạng/lớp sơn)','/ˌriːɪnˈsteɪtmənt/','n','Offshore Fabrication'],
+['post-weld heat treatment','xử lý nhiệt sau hàn','/poʊst weld hiːt ˈtriːtmənt/','n','Offshore Fabrication']];
+const T=()=>new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Ho_Chi_Minh'}),
+sh=a=>[...a].sort(()=>Math.random()-.5),
+add=(d,n)=>{const x=new Date(d+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)},
+diff=(a,b)=>Math.round((new Date(b)-new Date(a))/864e5),
+esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),
+save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}},
+dl=(n,t,m)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click()},
+mk=(a,i)=>({id:Date.now()+'-'+i+Math.random().toString(36).slice(2,5),en:a[0],vi:a[1],ipa:a[2]||'',type:a[3]||'',topic:a[4]||'Khác',ex:a[5]||'',exvi:a[6]||'',added:T(),learned:'',last:'',next:'',ok:0,bad:0,lv:0,st:'New'});
+let S,Q=null,tab='garden';
+function init(){let seed=null,raw=null;try{seed=JSON.parse(document.getElementById('seed').textContent||'null')}catch(e){}
+try{raw=localStorage.getItem(K)}catch(e){}
+try{S=raw?JSON.parse(raw):null}catch(e){S=null}
+if(seed&&(!S||S.seedId!==seed.seedId)){S=seed.data;S.seedId=seed.seedId}
+if(!S)S={words:DEF.map(mk),done:[],err:{d:'',n:0},rescue:null,set:{start:T(),name:''}};
+S.v=2;S.sk=S.sk||{};['voc','gra','sen','read','wri','work'].forEach(k=>S.sk[k]=S.sk[k]||{n:0,ok:0});S.ln=S.ln||0;S.ft=S.ft||[];S.lesson=S.lesson||null;mergeVocab();if(S.err.d!==T())S.err={d:T(),n:0};save()}
+function exportHTML(){const c=document.documentElement.cloneNode(true);
+c.querySelector('#seed').textContent=JSON.stringify({seedId:Date.now()+'',data:S}).replace(/</g,'\\u003c');
+dl('offshore-english-garden-export.html','<!DOCTYPE html>\n'+c.outerHTML,'text/html')}
+const cnt=s=>S.words.filter(w=>w.st==s).length,learned=()=>S.words.filter(w=>w.st!='New'),
+due=()=>S.words.filter(w=>w.st!='New'&&(w.next<=T()||w.st=='Difficult')),
+streak=()=>{let d=S.done.includes(T())?T():add(T(),-1),n=0;while(S.done.includes(d)){n++;d=add(d,-1)}return n},
+dayN=()=>Math.min(120,Math.max(1,diff(S.set.start,T())+1));
+function hdr(){$('#hd').innerHTML=`<span>${T()}</span><span>Level 1 – Beginner</span><span>Ngày ${dayN()}/120</span><span>Streak: ${streak()}</span><span>Đã học: ${learned().length}</span><span>Đã nhớ: ${cnt('Remembered')}</span>`;
+$('#nav').innerHTML=TABS.map(t=>`<button class="${t[0]==tab?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')}
+const $=s=>document.querySelector(s);
+function go(t){tab=t;Q=null;hdr();if(S.rescue&&['learn','review','test'].includes(t))return rescueView();V[t]()}
+function stage(){const s=stage0();return s>1&&S.sk.sen.n+S.sk.gra.n==0?1:s}
+function stage0(){const d=S.done.length,r=cnt('Remembered'),n=S.words.length;return d==0?0:(d>=120&&n>0&&r==n)?4:d>=72?3:(d>=10||r>=5)?2:1}
+function tree(){const st=stage(),h=[0,50,110,160,170][st],n=[0,3,10,22,30][st],e=S.err.n,sick=e>=2||S.rescue,yel=Math.min(e,3)+(S.rescue?3:0),W=8+st*3;
+let s=`<svg viewBox="0 0 300 290" width="100%" style="max-width:380px"><ellipse cx="150" cy="268" rx="120" ry="20" fill="#7a5230"/>`;
+if(st==0)s+=`<ellipse cx="150" cy="258" rx="9" ry="6" fill="#4a3320"/>`;
+else{s+=`<g class="${sick?'wilt':'sway'}" ${sick?'transform="rotate(4 150 260)"':''}><rect x="${150-W/2}" y="${260-h}" width="${W}" height="${h}" rx="3" fill="#7a5230"/>`;
+for(let i=0;i<n;i++){const x=150+(i%2?1:-1)*(12+(i*13)%(30+st*18)),y=262-h*(0.3+0.75*i/n),c=i<yel?'#d4b800':(st==1?'#8fd694':st==2?'#4cae5a':'#2e8b3d');
+s+=`<ellipse cx="${x}" cy="${y}" rx="${12+st*2}" ry="${8+st}" fill="${c}"/>`;if(e>=3||S.rescue){if(i<3)s+=`<circle cx="${x}" cy="${y}" r="3" fill="#5a3a1a"/>`}
+if(st>=3&&i%4==0)s+=`<circle cx="${x+6}" cy="${y-8}" r="4" fill="#f2a1c4"/>`}
+if(st==4)for(let i=0;i<Math.min(cnt('Remembered'),20);i++)s+=`<circle cx="${150+(i%2?1:-1)*(8+(i*17)%90)}" cy="${262-h*(0.35+0.6*i/20)+10}" r="6" fill="#d9362b"/>`;
+s+='</g>'}return s+'</svg>'}
+const MSG=['Ngày 1 – Bắt đầu hành trình','Bạn đã bắt đầu xây dựng nền tảng tiếng Anh','Cây đang phát triển tốt. Hãy duy trì!','Cây đã trưởng thành. Sắp về đích!','CONGRATULATIONS! YOUR ENGLISH GARDEN IS FULLY GROWN!<br><small>Bạn đã hoàn thành hành trình 120 ngày. Mỗi từ vựng là một trái ngọt từ sự kiên trì của bạn.</small>'];
+const V={
+garden(){const l=learned().length;$('#main').innerHTML=`<div class=card style="text-align:center">${tree()}<h3>${MSG[stage()]}</h3>${S.rescue?'<p class=r>OH NO! YOUR TREE IS WILTING! Hãy hoàn thành RESCUE MODE.</p>':''}</div>
+<div class=grid><div class=k>Tổng từ<b>${S.words.length}</b></div><div class=k>Đã học<b>${l}</b></div><div class=k>Cần ôn<b>${due().length}</b></div><div class=k>Ghi nhớ tốt<b>${cnt('Remembered')}</b></div><div class=k>Lỗi hôm nay<b>${S.err.n}</b></div><div class=k>Lượt sai còn lại<b>${Math.max(0,3-S.err.n)}</b></div></div>
+<div class=card><div class=bar><i style="width:${Math.round(S.done.length/1.2)}%"></i></div><small>Lộ trình: ${S.done.length}/120 ngày hoàn thành</small></div>`},
+learn(){const ws=S.words.filter(w=>w.st=='New').slice(0,6);
+$('#main').innerHTML=ws.length?`<div class=card><h3>Từ mới hôm nay (${ws.length} từ)</h3><p>Nhìn từ, tự đoán nghĩa, rồi bấm vào dòng để xem nghĩa.</p>${ws.map(w=>`<div class=w onclick="this.classList.toggle('open')"><b>${esc(w.en)}</b> ${esc(w.ipa)} <i>${esc(w.type)}</i><div class=m>${esc(w.vi)}${w.ex?`<br>${esc(w.ex)} – ${esc(w.exvi)}`:''}</div></div>`).join('')}<button onclick="finLearn()">Hoàn thành &amp; kiểm tra</button></div>`:'<div class=card>Không còn từ mới. Hãy thêm từ vào Kho từ.</div>'},
+review(){const d=sh(due()).slice(0,10);$('#main').innerHTML=`<div class=card><h3>Ôn tập</h3><p>Từ đến hạn ôn: ${due().length}</p>${d.length?'<button onclick="startQuiz(due().slice(0,10),\'review\')">Bắt đầu ôn</button>':'<p>Chưa có từ cần ôn.</p>'}</div>`},
+test(){const l=learned();$('#main').innerHTML=`<div class=card><h3>Kiểm tra từ vựng</h3><p>Mỗi câu sai tính 1 lỗi. Sai lần thứ 4 trong ngày sẽ kích hoạt RESCUE MODE.</p>${l.length?'<button onclick="startQuiz(l=learned(),\'test\')">Làm bài (tối đa 10 câu)</button>':'<p>Hãy học từ mới trước.</p>'}</div>`},
+kho(){const f=($('#q')||{}).value||'',s=($('#fs')||{}).value||'',tp=[...new Set(S.words.map(w=>w.topic))];
+const L=S.words.filter(w=>(w.en+w.vi).toLowerCase().includes(f.toLowerCase())&&(!s||w.st==s)&&(!($('#ft')||{}).value||w.topic==$('#ft').value));
+$('#main').innerHTML=`<div class=card><input id=q placeholder="Tìm kiếm" value="${esc(f)}" oninput="V.kho();$('#q').focus()"><select id=fs onchange="V.kho()"><option value="">Mọi trạng thái</option>${['New','Learning','Reviewing','Remembered','Difficult'].map(x=>`<option ${x==s?'selected':''}>${x}</option>`).join('')}</select><select id=ft onchange="V.kho()"><option value="">Mọi chủ đề</option>${tp.map(x=>`<option>${esc(x)}</option>`).join('')}</select>
+<div><input id=a1 placeholder="English"><input id=a2 placeholder="Tiếng Việt"><input id=a3 placeholder="IPA"><input id=a4 placeholder="Chủ đề"><button onclick="addW()">Thêm từ</button></div>
+<div><button class=s onclick="csvOut()">Xuất CSV</button><button class=s onclick="$('#fc').click()">Nhập CSV</button><button class=s onclick="dl('kho-tu.json',JSON.stringify(S),'application/json')">Sao lưu JSON</button><button class=s onclick="$('#fj').click()">Khôi phục JSON</button><input id=fc type=file hidden accept=.csv onchange="csvIn(this)"><input id=fj type=file hidden accept=.json onchange="jsonIn(this)"></div></div>
+<div class=card style="overflow:auto"><table><tr><th>English</th><th>Nghĩa</th><th>IPA</th><th>Trạng thái</th><th>Đúng/Sai</th><th>Ôn tiếp</th><th></th></tr>${L.map(w=>`<tr><td><b>${esc(w.en)}</b></td><td>${esc(w.vi)}</td><td>${esc(w.ipa)}</td><td>${w.st}</td><td>${w.ok}/${w.bad}</td><td>${w.next}</td><td><button class=s onclick="edW('${w.id}')">Sửa</button><button class=d onclick="delW('${w.id}')">Xóa</button></td></tr>`).join('')}</table></div>`},
+road(){const d=dayN(),P=['Ngày 1–30: Nền tảng','Ngày 31–60: Tiếng Anh chuyên ngành','Ngày 61–90: Giao tiếp công việc','Ngày 91–120: Tiếng Anh trong cuộc họp'];
+$('#main').innerHTML=`<div class=card><h3>Hôm nay là ngày ${d}/120</h3><div class=bar><i style="width:${Math.round(S.done.length/1.2)}%"></i></div><p>Đã hoàn thành ${S.done.length} ngày học.</p>${P.map((p,i)=>`<p class="${d>i*30&&d<=i*30+30?'g':''}"><b>${p}</b></p>`).join('')}</div>`},
+stats(){const ok=S.words.reduce((a,w)=>a+w.ok,0),bad=S.words.reduce((a,w)=>a+w.bad,0),m=['New','Learning','Reviewing','Remembered','Difficult'];
+$('#main').innerHTML=`<div class=card><h3>Thống kê</h3><p>Tỷ lệ đúng: ${ok+bad?Math.round(ok*100/(ok+bad)):0}% (${ok} đúng / ${bad} sai)</p><p>Ngày hoàn thành: ${S.done.length} – Streak: ${streak()}</p>${SK()}${m.map(x=>`<p>${x}: ${cnt(x)}<div class=bar><i style="width:${S.words.length?cnt(x)*100/S.words.length:0}%"></i></div></p>`).join('')}</div>`},
+set(){$('#main').innerHTML=`<div class=card><h3>Cài đặt</h3><p>Tên: <input id=sn value="${esc(S.set.name)}"></p><p>Ngày bắt đầu: <input id=sd type=date value="${S.set.start}"></p><button onclick="S.set.name=$('#sn').value;S.set.start=$('#sd').value||T();save();hdr();alert('Đã lưu')">Lưu</button>
+<hr><p>Xuất ra một file HTML mới có sẵn toàn bộ dữ liệu và cấu hình hiện tại. Người nhận mở file là thấy ngay, không cần nhập gì thêm. File gốc không thay đổi.</p><button onclick="exportHTML()">Export HTML</button></div>`}};
+function finLearn(){const ws=S.words.filter(w=>w.st=='New').slice(0,6),t=T();ws.forEach(w=>{w.st='Learning';w.learned=t;w.next=add(t,1)});save();hdr();startQuiz(ws,'learn')}
+function addW(){const e=$('#a1').value.trim(),v=$('#a2').value.trim();if(!e||!v)return alert('Cần nhập English và Tiếng Việt');
+if(S.words.some(w=>w.en.toLowerCase()==e.toLowerCase()))return alert('Từ đã có trong kho');S.words.push(mk([e,v,$('#a3').value,'',$('#a4').value||'Khác'],S.words.length));save();V.kho()}
+function edW(id){const w=S.words.find(x=>x.id==id),v=prompt('Nghĩa mới:',w.vi);if(v){w.vi=v;save();V.kho()}}
+function delW(id){const w=S.words.find(x=>x.id==id);if(confirm('Xóa từ "'+w.en+'"?')){S.words=S.words.filter(x=>x.id!=id);save();V.kho()}}
+function csvOut(){const q=s=>'"'+String(s).replace(/"/g,'""')+'"';dl('kho-tu.csv','\ufeff'+S.words.map(w=>[w.en,w.vi,w.ipa,w.type,w.topic,w.ex,w.exvi].map(q).join(',')).join('\n'),'text/csv')}
+function csvIn(i){const f=i.files[0];if(!f)return;f.text().then(t=>{let n=0;t.replace(/^\ufeff/,'').split(/\r?\n/).forEach(l=>{if(!l.trim())return;const a=l.split(',').map(x=>x.trim().replace(/^"|"$/g,''));if(a.length<2||S.words.some(w=>w.en.toLowerCase()==a[0].toLowerCase()))return;S.words.push(mk(a,S.words.length));n++});save();alert('Đã nhập '+n+' từ (cột: English, Việt, IPA, Loại, Chủ đề, Ví dụ, Dịch ví dụ; không dùng dấu phẩy trong ô)');V.kho()})}
+function jsonIn(i){const f=i.files[0];if(f)f.text().then(t=>{try{const d=JSON.parse(t);if(!d.words)throw 0;if(confirm('Thay toàn bộ dữ liệu hiện tại?')){S=d;save();hdr();V.kho()}}catch(e){alert('File JSON không hợp lệ')}})}
+/* QUIZ */
+function startQuiz(ws,kind){ws=sh(ws).slice(0,10);if(!ws.length)return alert('Không có từ để kiểm tra');Q={qs:ws.map((w,i)=>({w,t:i%2})),i:0,ok:0,bad:0,kind};qz()}
+function qz(){const q=Q.qs[Q.i];if(!q)return endQ();const w=q.w,n=Q.i+1,m=$('#main');
+if(q.t==0){const o=sh([w,...sh(S.words.filter(x=>x.id!=w.id)).slice(0,3)]);window._o=o;
+m.innerHTML=`<div class=card><small>Câu ${n}/${Q.qs.length}</small><h2>${esc(w.en)} <small>${esc(w.ipa)}</small></h2><p>Chọn nghĩa đúng:</p>${o.map((x,i)=>`<button class=opt onclick="ans(window._o[${i}].id=='${w.id}')">${esc(x.vi)}</button>`).join('')}</div>`}
+else m.innerHTML=`<div class=card><small>Câu ${n}/${Q.qs.length}</small><h2>${esc(w.vi)}</h2><p>Nhập từ tiếng Anh:</p><input id=ai autofocus onkeydown="if(event.key=='Enter')sub()"><button onclick="sub()">Trả lời</button></div>`}
+function sub(){ans($('#ai').value.trim().toLowerCase()==Q.qs[Q.i].w.en.toLowerCase())}
+function upd(w,ok){const t=T();w.last=t;if(ok){w.ok++;w.lv=Math.min(w.lv+1,5)}else{w.bad++;w.lv=Math.max(w.lv-1,0);w.lastBad=t}
+w.next=add(t,ok?[1,3,7,14,30][Math.min(w.lv-1,4)]:1);w.st=(w.bad>=3&&w.bad*2>w.ok)?'Difficult':(w.ok>=3&&w.lv>=3)?'Remembered':w.lv>=1?'Reviewing':'Learning'}
+function ans(ok){const w=Q.qs[Q.i].w;upd(w,ok);ok?Q.ok++:Q.bad++;let msg='';
+if(!ok&&Q.kind!='rescue'){S.err.n++;if(S.err.n>=4&&!S.rescue){S.rescue={};return startRescue()}
+msg=['','Lá vàng đầu tiên xuất hiện. Hãy đọc kỹ hơn nhé.','Bạn đã sai 2 lần hôm nay. Hãy đọc kỹ câu hỏi và ghi nhớ từ vựng.','Bạn đã sử dụng hết 3 lượt sai hôm nay. Hãy tập trung hơn nhé!'][S.err.n]}
+save();hdr();$('#main').innerHTML=`<div class=card><h3 class="${ok?'g':'r'}">${ok?'Đúng':'Sai'}</h3><p><b>${esc(w.en)}</b> ${esc(w.ipa)} = ${esc(w.vi)}</p><p class=r>${msg}</p><button onclick="Q.i++;qz()">Tiếp tục</button></div>`}
+function endQ(){const p=Math.round(Q.ok*100/Q.qs.length),k=Q.kind,ws=Q.qs.map(q=>q.w);
+if(k=='rescue'){if(Q.bad==0&&p>=90){S.rescue=null;save();hdr();return $('#main').innerHTML=`<div class=card><h2 class=g>YOU SAVED YOUR TREE!</h2><p>Bạn đã cứu khu vườn của mình. Hãy tiếp tục hành trình học tiếng Anh.</p><button onclick="go('garden')">Về khu vườn</button></div>`}
+return $('#main').innerHTML=`<div class=card><h3 class=r>Chưa đạt: ${p}%</h3><p>Cần tối thiểu 90% và không sai câu nào ở lượt cuối. Hãy xem lại các từ rồi làm lại.</p><button onclick="rescueView()">Học lại danh sách</button><button onclick="startQuiz(window._rw,'rescue')">Làm lại ngay</button></div>`}
+$('#main').innerHTML=`<div class=card><h3>Kết quả: ${Q.ok}/${Q.qs.length} (${p}%)</h3><button onclick="go('garden')">Về khu vườn</button></div>`}
+function startRescue(){const t=T();window._rw=S.words.filter(w=>w.st!='New').sort((a,b)=>((b.lastBad==t)*1e3+b.bad*10+(b.st!='Remembered'))-((a.lastBad==t)*1e3+a.bad*10+(a.st!='Remembered'))).slice(0,10);S.rescue={ids:window._rw.map(w=>w.id)};save();hdr();rescueView()}
+function rescueView(){if(!window._rw||!window._rw.length)window._rw=S.words.filter(w=>(S.rescue.ids||[]).includes(w.id));if(!window._rw.length)window._rw=S.words.filter(w=>w.st!='New').slice(0,10);
+$('#main').innerHTML=`<div class=card><h2 class=r>RESCUE MODE – CỨU CÂY</h2><p><b>OH NO! YOUR TREE IS WILTING!</b><br>Bạn đã sai 4 lần hôm nay. Hãy ôn tập 10 từ vựng thường sai nhất để cứu khu vườn của mình.</p>${tree()}${window._rw.map(w=>`<div class=w><b>${esc(w.en)}</b> ${esc(w.ipa)} = ${esc(w.vi)} (sai ${w.bad})</div>`).join('')}<button onclick="startQuiz(window._rw,'rescue')">Bắt đầu kiểm tra</button></div>`}
+
+const EXTRA=`shall|bắt buộc phải (yêu cầu bắt buộc)|/ʃæl/|modal|Từ cơ bản trong tài liệu
+must|bắt buộc phải|/mʌst/|modal|Từ cơ bản trong tài liệu
+should|nên (khuyến nghị)|/ʃʊd/|modal|Từ cơ bản trong tài liệu
+may|được phép|/meɪ/|modal|Từ cơ bản trong tài liệu
+will|sẽ (ý định thực hiện)|/wɪl/|modal|Từ cơ bản trong tài liệu
+site|công trường|/saɪt/|n|Con người và đơn vị
+shop|xưởng|/ʃɒp/|n|Con người và đơn vị
+painter|thợ sơn|/ˈpeɪntər/|n|Con người và đơn vị
+blaster|thợ phun cát|/ˈblæstər/|n|Con người và đơn vị
+inspector|người kiểm tra|/ɪnˈspektər/|n|Con người và đơn vị
+contractor|nhà thầu|/ˈkɒntræktər/|n|Con người và đơn vị
+subcontractor|thầu phụ|/ˌsʌbkənˈtræktər/|n|Con người và đơn vị
+vendor|nhà cung cấp|/ˈvendər/|n|Con người và đơn vị
+supplier|nhà cung cấp|/səˈplaɪər/|n|Con người và đơn vị
+manufacturer|nhà sản xuất|/ˌmænjuˈfæktʃərər/|n|Con người và đơn vị
+fabricator|đơn vị chế tạo|/ˈfæbrɪkeɪtər/|n|Con người và đơn vị
+applicator|đơn vị thi công sơn|/ˈæplɪkeɪtər/|n|Con người và đơn vị
+coating operator|công nhân thi công sơn (phun cát và sơn)|/ˈkoʊtɪŋ ˈɒpəreɪtər/|n|Con người và đơn vị
+colour|màu sắc|/ˈkʌlər/|n|Vật liệu sơn
+coat|lớp sơn|/koʊt/|n|Vật liệu sơn
+primer|sơn lót|/ˈpraɪmər/|n|Vật liệu sơn
+topcoat|sơn phủ ngoài|/ˈtɒpkoʊt/|n|Vật liệu sơn
+thinner|dung môi pha loãng sơn|/ˈθɪnər/|n|Vật liệu sơn
+pigment|bột màu|/ˈpɪɡmənt/|n|Vật liệu sơn
+paint system|hệ sơn|/peɪnt ˈsɪstəm/|n|Vật liệu sơn
+lining|lớp lót bên trong (bồn/ống)|/ˈlaɪnɪŋ/|n|Vật liệu sơn
+wrapping|quấn băng bảo vệ|/ˈræpɪŋ/|n|Vật liệu sơn
+zinc-rich epoxy|sơn epoxy giàu kẽm|/zɪŋk rɪtʃ ˈepɒksi/|n|Vật liệu sơn
+high solid epoxy|epoxy hàm lượng rắn cao|/haɪ ˈsɒlɪd ˈepɒksi/|n|Vật liệu sơn
+glass flake epoxy|epoxy vảy thủy tinh|/ɡlɑːs fleɪk ˈepɒksi/|n|Vật liệu sơn
+polyurethane|polyurethane (PU)|/ˌpɒliˈjʊrəθeɪn/|n|Vật liệu sơn
+phenolic epoxy|epoxy phenolic|/fɪˈnɒlɪk ˈepɒksi/|n|Vật liệu sơn
+hot dip galvanising|mạ kẽm nhúng nóng|/hɒt dɪp ˈɡælvənaɪzɪŋ/|n|Vật liệu sơn
+galvanized steel|thép mạ kẽm|/ˈɡælvənaɪzd stiːl/|n|Vật liệu sơn
+carbon steel|thép carbon|/ˈkɑːrbən stiːl/|n|Vật liệu sơn
+stainless steel|thép không gỉ|/ˈsteɪnləs stiːl/|n|Vật liệu sơn
+duplex stainless steel|thép không gỉ duplex|/ˈduːpleks ˈsteɪnləs stiːl/|n|Vật liệu sơn
+thermal sprayed aluminium|nhôm phun nhiệt|/ˈθɜːrml spreɪd ˌæljuˈmɪniəm/|n|Vật liệu sơn
+glass reinforced plastic|nhựa gia cường sợi thủy tinh|/ɡlɑːs ˌriːɪnˈfɔːrst ˈplæstɪk/|n|Vật liệu sơn
+passive fire protection|chống cháy thụ động|/ˈpæsɪv ˈfaɪər prəˈtekʃn/|n|Vật liệu sơn
+rust|gỉ sét|/rʌst/|n|Chuẩn bị bề mặt
+grinding|mài|/ˈɡraɪndɪŋ/|n|Chuẩn bị bề mặt
+degreasing|tẩy dầu mỡ|/diːˈɡriːsɪŋ/|n|Chuẩn bị bề mặt
+substrate|bề mặt nền (kim loại cần sơn)|/ˈsʌbstreɪt/|n|Chuẩn bị bề mặt
+abrasive|vật liệu phun mài|/əˈbreɪsɪv/|n|Chuẩn bị bề mặt
+surface preparation|chuẩn bị bề mặt|/ˈsɜːrfɪs ˌprepəˈreɪʃn/|n|Chuẩn bị bề mặt
+blast cleaning|làm sạch bằng phun mài|/blɑːst ˈkliːnɪŋ/|n|Chuẩn bị bề mặt
+dry abrasive blast cleaning|phun mài khô|/draɪ əˈbreɪsɪv blɑːst ˈkliːnɪŋ/|n|Chuẩn bị bề mặt
+wet abrasive blast cleaning|phun mài ướt|/wet əˈbreɪsɪv blɑːst ˈkliːnɪŋ/|n|Chuẩn bị bề mặt
+water jetting|phun nước áp lực cao|/ˈwɔːtər ˈdʒetɪŋ/|n|Chuẩn bị bề mặt
+profile|độ nhám bề mặt (biên dạng)|/ˈproʊfaɪl/|n|Chuẩn bị bề mặt
+anchor pattern|biên dạng bám (độ nhám neo)|/ˈæŋkər ˈpætərn/|n|Chuẩn bị bề mặt
+amplitude|biên độ nhám|/ˈæmplɪtuːd/|n|Chuẩn bị bề mặt
+mouse hole|lỗ thoát nước/hàn nối trên thép tấm (lỗ chuột)|/maʊs hoʊl/|n|Chuẩn bị bề mặt
+atmospheric zone|vùng khí quyển|/ˌætməsˈferɪk zoʊn/|n|Môi trường làm việc
+splash zone|vùng nước bắn|/splæʃ zoʊn/|n|Môi trường làm việc
+submerged zone|vùng ngập nước|/səbˈmɜːrdʒd zoʊn/|n|Môi trường làm việc
+dew point|điểm sương|/ˈdjuː pɔɪnt/|n|Môi trường làm việc
+relative humidity|độ ẩm tương đối|/ˈrelətɪv hjuːˈmɪdəti/|n|Môi trường làm việc
+elevated temperature|nhiệt độ cao (trên 120°C)|/ˈelɪveɪtɪd ˈtemprətʃər/|n|Môi trường làm việc
+hot surfaces|bề mặt nóng (trên 65°C)|/hɒt ˈsɜːrfɪsɪz/|n|Môi trường làm việc
+central production platform|giàn xử lý trung tâm|/ˈsentrəl prəˈdʌkʃn ˈplætfɔːrm/|n|Môi trường làm việc
+wellhead platform|giàn đầu giếng|/ˈwelhed ˈplætfɔːrm/|n|Môi trường làm việc
+living quarters platform|giàn nhà ở|/ˈlɪvɪŋ ˈkwɔːrtərz ˈplætfɔːrm/|n|Môi trường làm việc
+flare tower|tháp đuốc|/fler ˈtaʊər/|n|Môi trường làm việc
+jacket|chân đế giàn|/ˈdʒækɪt/|n|Môi trường làm việc
+caisson|ống chống/ống bơm nước biển (caisson)|/ˈkeɪsɑːn/|n|Môi trường làm việc
+microns|micron (µm; một phần nghìn mm)|/ˈmaɪkrɒnz/|n|Đo và kiểm tra
+dry film thickness|chiều dày màng sơn khô|/draɪ fɪlm ˈθɪknəs/|n|Đo và kiểm tra
+wet film thickness|chiều dày màng sơn ướt|/wet fɪlm ˈθɪknəs/|n|Đo và kiểm tra
+nominal dry film thickness|chiều dày màng sơn khô danh định|/ˈnɒmɪnl draɪ fɪlm ˈθɪknəs/|n|Đo và kiểm tra
+total dry film thickness|tổng chiều dày màng sơn khô|/ˈtoʊtl draɪ fɪlm ˈθɪknəs/|n|Đo và kiểm tra
+degree of paint rusting|mức độ gỉ của lớp sơn|/dɪˈɡriː əv peɪnt ˈrʌstɪŋ/|n|Đo và kiểm tra
+holidays|lỗ hổng/khuyết tật nhỏ trên màng sơn|/ˈhɒlədeɪz/|n|Đo và kiểm tra
+hold point|điểm dừng kiểm tra bắt buộc|/hoʊld pɔɪnt/|n|Đo và kiểm tra
+overcoating interval|thời gian chờ sơn lớp kế tiếp|/ˌoʊvərˈkoʊtɪŋ ˈɪntərvl/|n|Đo và kiểm tra
+pot life|thời gian sử dụng sau khi pha trộn|/pɒt laɪf/|n|Đo và kiểm tra
+shelf life|hạn sử dụng khi lưu kho|/ʃelf laɪf/|n|Đo và kiểm tra
+technical datasheet|bảng thông số kỹ thuật sản phẩm|/ˈteknɪkl ˈdeɪtəʃiːt/|n|Đo và kiểm tra
+material safety datasheet|phiếu an toàn hóa chất|/məˈtɪriəl ˈseɪfti ˈdeɪtəʃiːt/|n|An toàn
+personnel protective equipment|thiết bị bảo hộ cá nhân|/ˌpɜːrsəˈnel prəˈtektɪv ɪˈkwɪpmənt/|n|An toàn
+lower explosive limit|giới hạn nổ dưới|/ˈloʊər ɪkˈsploʊsɪv ˈlɪmɪt/|n|An toàn
+simultaneous operations|các hoạt động thi công đồng thời|/ˌsaɪmlˈteɪniəs ˌɒpəˈreɪʃnz/|n|An toàn
+DFT|chiều dày màng sơn khô (Dry Film Thickness)||abbr|Viết tắt
+WFT|chiều dày màng sơn ướt (Wet Film Thickness)||abbr|Viết tắt
+NDFT|chiều dày màng sơn khô danh định (Nominal Dry Film Thickness)||abbr|Viết tắt
+TDFT|tổng chiều dày màng sơn khô (Total Dry Film Thickness)||abbr|Viết tắt
+ITP|kế hoạch kiểm tra và thử nghiệm (Inspection and Test Plan)||abbr|Viết tắt
+CPT|thử nghiệm quy trình sơn (Coating Procedure Test)||abbr|Viết tắt
+CPS|quy trình thi công sơn (Coating Procedure Specification)||abbr|Viết tắt
+MSDS|phiếu an toàn hóa chất (Material Safety Data Sheet)||abbr|Viết tắt
+TDS|bảng thông số kỹ thuật (Technical Datasheet)||abbr|Viết tắt
+PPE|thiết bị bảo hộ cá nhân (Personnel Protective Equipment)||abbr|Viết tắt
+QA/QC|đảm bảo và kiểm soát chất lượng (Quality Assurance/Quality Control)||abbr|Viết tắt
+PFP|chống cháy thụ động (Passive Fire Protection)||abbr|Viết tắt
+TSA|nhôm phun nhiệt (Thermal Sprayed Aluminium)||abbr|Viết tắt
+GRP|nhựa gia cường sợi thủy tinh (Glass Reinforced Plastic)||abbr|Viết tắt
+CS|thép carbon (Carbon Steel)||abbr|Viết tắt
+SS|thép không gỉ (Stainless Steel)||abbr|Viết tắt
+DSS|thép không gỉ duplex (Duplex Stainless Steel)||abbr|Viết tắt
+CRA|hợp kim chống ăn mòn (Corrosion Resistant Alloy)||abbr|Viết tắt
+NACE|Hiệp hội kỹ sư ăn mòn Hoa Kỳ (National Association of Corrosion Engineers)||abbr|Viết tắt
+SSPC|Hiệp hội sơn bảo vệ (Society for Protective Coatings)||abbr|Viết tắt
+MSL|mực nước biển trung bình (Mean Sea Level)||abbr|Viết tắt
+LEL|giới hạn nổ dưới (Lower Explosive Limit)||abbr|Viết tắt
+SIMOPS|hoạt động thi công đồng thời (Simultaneous Operations)||abbr|Viết tắt
+TLV|giá trị giới hạn tiếp xúc (Threshold Limit Value)||abbr|Viết tắt
+COSHH|kiểm soát chất độc hại đối với sức khỏe (Control of Substances Hazardous to Health)||abbr|Viết tắt
+FBE|epoxy nung chảy (Fusion Bonded Epoxy)||abbr|Viết tắt
+MIO|oxit sắt dạng vảy (Micaceous Iron Oxide)||abbr|Viết tắt
+WHP|giàn đầu giếng (Wellhead Platform)||abbr|Viết tắt
+CPP|giàn xử lý trung tâm (Central Production Platform)||abbr|Viết tắt
+EPCI|thiết kế - mua sắm - thi công - lắp đặt (Engineering Procurement Construction Installation)||abbr|Viết tắt
+water|nước|/ˈwɔːtər/|n|Công việc hằng ngày
+test|thử nghiệm; kiểm tra|/test/|n/v|Công việc hằng ngày
+tape|băng dính; băng quấn|/teɪp/|n|Công việc hằng ngày
+repair|sửa chữa|/rɪˈper/|v/n|Công việc hằng ngày
+clean|làm sạch; sạch|/kliːn/|v/adj|Công việc hằng ngày
+safety|an toàn|/ˈseɪfti/|n|Công việc hằng ngày
+equipment|thiết bị|/ɪˈkwɪpmənt/|n|Công việc hằng ngày
+temperature|nhiệt độ|/ˈtemprətʃər/|n|Công việc hằng ngày
+thickness|chiều dày|/ˈθɪknəs/|n|Công việc hằng ngày
+inspection|việc kiểm tra|/ɪnˈspekʃn/|n|Công việc hằng ngày
+construction|thi công; xây dựng|/kənˈstrʌkʃn/|n|Công việc hằng ngày
+pressure|áp suất|/ˈpreʃər/|n|Công việc hằng ngày
+tool|dụng cụ|/tuːl/|n|Công việc hằng ngày
+material|vật liệu|/məˈtɪriəl/|n|Công việc hằng ngày
+standard|tiêu chuẩn|/ˈstændərd/|n|Công việc hằng ngày
+minimum|tối thiểu|/ˈmɪnɪməm/|adj|Công việc hằng ngày
+maximum|tối đa|/ˈmæksɪməm/|adj|Công việc hằng ngày
+remove|loại bỏ; tháo bỏ|/rɪˈmuːv/|v|Công việc hằng ngày
+apply|thi công; phủ (sơn)|/əˈplaɪ/|v|Công việc hằng ngày
+damaged|bị hư hỏng|/ˈdæmɪdʒd/|adj|Công việc hằng ngày
+approved|được phê duyệt|/əˈpruːvd/|adj|Công việc hằng ngày
+record|hồ sơ ghi chép|/ˈrekərd/|n|Công việc hằng ngày
+quality|chất lượng|/ˈkwɒləti/|n|Công việc hằng ngày
+report|báo cáo|/rɪˈpɔːrt/|n|Công việc hằng ngày
+valve|van|/vælv/|n|Công việc hằng ngày
+pipe|ống|/paɪp/|n|Công việc hằng ngày
+tank|bồn chứa|/tæŋk/|n|Công việc hằng ngày
+vessel|bình áp lực|/ˈvesl/|n|Công việc hằng ngày
+fire|lửa; cháy|/ˈfaɪər/|n|Công việc hằng ngày
+dust|bụi|/dʌst/|n|Công việc hằng ngày
+oil|dầu|/ɔɪl/|n|Công việc hằng ngày
+grease|mỡ|/ɡriːs/|n|Công việc hằng ngày
+storage|lưu kho; bảo quản|/ˈstɔːrɪdʒ/|n|Công việc hằng ngày
+access|lối tiếp cận|/ˈækses/|n|Công việc hằng ngày
+personnel|nhân sự|/ˌpɜːrsəˈnel/|n|Công việc hằng ngày
+review|xem xét|/rɪˈvjuː/|v/n|Công việc hằng ngày
+approval|sự phê duyệt|/əˈpruːvl/|n|Công việc hằng ngày
+procedure|quy trình|/prəˈsiːdʒər/|n|Công việc hằng ngày
+ensure|đảm bảo|/ɪnˈʃʊr/|v|Công việc hằng ngày
+required|được yêu cầu|/rɪˈkwaɪərd/|adj|Công việc hằng ngày
+suitable|phù hợp|/ˈsuːtəbl/|adj|Công việc hằng ngày
+acceptable|chấp nhận được|/əkˈseptəbl/|adj|Công việc hằng ngày
+visible|nhìn thấy được|/ˈvɪzəbl/|adj|Công việc hằng ngày
+thorough|kỹ lưỡng|/ˈθʌrə/|adj|Công việc hằng ngày
+lightly|nhẹ nhàng|/ˈlaɪtli/|adv|Công việc hằng ngày
+fully|hoàn toàn|/ˈfʊli/|adv|Công việc hằng ngày
+necessary|cần thiết|/ˈnesəseri/|adj|Công việc hằng ngày
+recommended|được khuyến nghị|/ˌrekəˈmendɪd/|adj|Công việc hằng ngày
+specified|được chỉ định|/ˈspesɪfaɪd/|adj|Công việc hằng ngày
+otherwise|nếu không; trừ khi có quy định khác|/ˈʌðərwaɪz/|adv|Công việc hằng ngày
+prior to|trước khi|/ˈpraɪər tuː/|phr|Công việc hằng ngày
+carry out|thực hiện|/ˈkæri aʊt/|phr|Công việc hằng ngày
+in accordance with|phù hợp với; theo|/ɪn əˈkɔːrdns wɪð/|phr|Công việc hằng ngày
+spray|phun|/spreɪ/|v/n|Dụng cụ và thiết bị
+airless spray|phun sơn không khí (airless)|/ˈerləs spreɪ/|n|Dụng cụ và thiết bị
+brush|chổi; cọ|/brʌʃ/|n|Dụng cụ và thiết bị
+power tool cleaning|làm sạch bằng dụng cụ điện|/ˈpaʊər tuːl ˈkliːnɪŋ/|n|Dụng cụ và thiết bị
+hand tool cleaning|làm sạch bằng dụng cụ cầm tay|/hænd tuːl ˈkliːnɪŋ/|n|Dụng cụ và thiết bị
+emery paper|giấy nhám|/ˈeməri ˈpeɪpər/|n|Dụng cụ và thiết bị
+compressed air|khí nén|/kəmˈprest er/|n|Dụng cụ và thiết bị
+vacuum|hút bụi; chân không|/ˈvækjuːm/|n/v|Dụng cụ và thiết bị
+pipework|hệ thống ống|/ˈpaɪpwɜːrk/|n|Dụng cụ và thiết bị
+piping|đường ống|/ˈpaɪpɪŋ/|n|Dụng cụ và thiết bị
+pipelines|đường ống dẫn|/ˈpaɪplaɪnz/|n|Dụng cụ và thiết bị
+structural steelwork|kết cấu thép|/ˈstrʌktʃərəl ˈstiːlwɜːrk/|n|Dụng cụ và thiết bị
+components|chi tiết; bộ phận|/kəmˈpoʊnənts/|n|Dụng cụ và thiết bị
+insulation|lớp cách nhiệt|/ˌɪnsjuˈleɪʃn/|n|Dụng cụ và thiết bị
+insulated|có bọc cách nhiệt|/ˈɪnsjuleɪtɪd/|adj|Dụng cụ và thiết bị
+uninsulated|không bọc cách nhiệt|/ʌnˈɪnsjuleɪtɪd/|adj|Dụng cụ và thiết bị
+inspection equipment|thiết bị kiểm tra|/ɪnˈspekʃn ɪˈkwɪpmənt/|n|Dụng cụ và thiết bị
+cleanliness|độ sạch|/ˈklenlinəs/|n|Chuẩn bị bề mặt
+roughness|độ nhám|/ˈrʌfnəs/|n|Chuẩn bị bề mặt
+contamination|sự nhiễm bẩn|/kənˌtæmɪˈneɪʃn/|n|Chuẩn bị bề mặt
+chloride|muối clorua|/ˈklɔːraɪd/|n|Chuẩn bị bề mặt
+residual|còn sót lại|/rɪˈzɪdʒuəl/|adj|Chuẩn bị bề mặt
+solvent|dung môi|/ˈsɒlvənt/|n|Chuẩn bị bề mặt
+solvent cleaning|làm sạch bằng dung môi|/ˈsɒlvənt ˈkliːnɪŋ/|n|Chuẩn bị bề mặt
+fresh water washing|rửa bằng nước ngọt|/freʃ ˈwɔːtər ˈwɒʃɪŋ/|n|Chuẩn bị bề mặt
+white metal|kim loại trắng (độ sạch phun cát cao nhất)|/waɪt ˈmetl/|n|Chuẩn bị bề mặt
+spot blast|phun mài cục bộ|/spɒt blæst/|n|Chuẩn bị bề mặt
+sweep blast|phun mài quét nhẹ|/swiːp blæst/|n|Chuẩn bị bề mặt
+abrasive blasting|phun mài|/əˈbreɪsɪv ˈblæstɪŋ/|n|Chuẩn bị bề mặt
+water-soluble salts|muối hòa tan trong nước|/ˈwɔːtər ˈsɒljəbl sɔːlts/|n|Chuẩn bị bề mặt
+particulate matter|bụi mịn; hạt bụi|/pɑːrˈtɪkjələt ˈmætər/|n|Chuẩn bị bề mặt
+preparation grade|cấp độ chuẩn bị bề mặt|/ˌprepəˈreɪʃn ɡreɪd/|n|Chuẩn bị bề mặt
+film|màng sơn|/fɪlm/|n|Thi công sơn
+layer|lớp|/ˈleɪər/|n|Thi công sơn
+primer coat|lớp sơn lót|/ˈpraɪmər koʊt/|n|Thi công sơn
+mid coat|lớp sơn trung gian|/mɪd koʊt/|n|Thi công sơn
+final coat|lớp sơn hoàn thiện|/ˈfaɪnl koʊt/|n|Thi công sơn
+sealer coat|lớp sơn phủ kín (seal)|/ˈsiːlər koʊt/|n|Thi công sơn
+two-component|hai thành phần|/ˈtuː kəmˈpoʊnənt/|adj|Thi công sơn
+high-build|màng dày|/haɪ bɪld/|adj|Thi công sơn
+solvent-free|không dung môi|/ˈsɒlvənt friː/|adj|Thi công sơn
+curing|quá trình đóng rắn|/ˈkjʊrɪŋ/|n|Thi công sơn
+paintwork|lớp sơn; công tác sơn|/ˈpeɪntwɜːrk/|n|Thi công sơn
+spraying|việc phun sơn|/ˈspreɪɪŋ/|n|Thi công sơn
+adhesive|chất kết dính; keo|/ədˈhiːsɪv/|n|Thi công sơn
+compatible|tương thích|/kəmˈpætəbl/|adj|Thi công sơn
+epoxy|nhựa epoxy|/ɪˈpɒksi/|n|Hệ sơn kỹ thuật
+zinc|kẽm|/zɪŋk/|n|Hệ sơn kỹ thuật
+aluminium|nhôm|/ˌæljuˈmɪniəm/|n|Hệ sơn kỹ thuật
+inorganic zinc silicate|sơn kẽm silicat vô cơ|/ˌɪnɔːrˈɡænɪk zɪŋk ˈsɪlɪkeɪt/|n|Hệ sơn kỹ thuật
+polyamide-cured epoxy|epoxy đóng rắn bằng polyamide|/ˌpɒliˈæmaɪd kjʊrd ɪˈpɒksi/|n|Hệ sơn kỹ thuật
+surface-tolerant epoxy|epoxy chịu bề mặt (dung sai bề mặt)|/ˈsɜːrfɪs ˈtɒlərənt ɪˈpɒksi/|n|Hệ sơn kỹ thuật
+aliphatic polyurethane|polyurethane gốc aliphatic|/ˌælɪˈfætɪk ˌpɒliˈjʊrəθeɪn/|n|Hệ sơn kỹ thuật
+cathodic protection|bảo vệ catốt|/kæˈθɒdɪk prəˈtekʃn/|n|Hệ sơn kỹ thuật
+corrosion|sự ăn mòn|/kəˈroʊʒn/|n|Hệ sơn kỹ thuật
+corrosivity|mức độ ăn mòn|/ˌkɒroʊˈsɪvəti/|n|Hệ sơn kỹ thuật
+corrosivity category|cấp độ ăn mòn môi trường|/ˌkɒroʊˈsɪvəti ˈkætəɡɔːri/|n|Hệ sơn kỹ thuật
+protective coating|lớp sơn bảo vệ|/prəˈtektɪv ˈkoʊtɪŋ/|n|Hệ sơn kỹ thuật
+generic type|loại sơn (theo gốc nhựa)|/dʒəˈnerɪk taɪp/|n|Hệ sơn kỹ thuật
+operating temperature|nhiệt độ vận hành|/ˈɒpəreɪtɪŋ ˈtemprətʃər/|n|Hệ sơn kỹ thuật
+design temperature|nhiệt độ thiết kế|/dɪˈzaɪn ˈtemprətʃər/|n|Hệ sơn kỹ thuật
+exposure|điều kiện tiếp xúc môi trường|/ɪkˈspoʊʒər/|n|Hệ sơn kỹ thuật
+internal lining|lớp lót bên trong|/ɪnˈtɜːrnl ˈlaɪnɪŋ/|n|Hệ sơn kỹ thuật
+visual inspection|kiểm tra bằng mắt|/ˈvɪʒuəl ɪnˈspekʃn/|n|Đo và kiểm tra
+inspection record|biên bản kiểm tra|/ɪnˈspekʃn ˈrekərd/|n|Đo và kiểm tra
+holiday detection|dò lỗ hổng màng sơn|/ˈhɒlədeɪ dɪˈtekʃn/|n|Đo và kiểm tra
+holiday testing|thử lỗ hổng màng sơn|/ˈhɒlədeɪ ˈtestɪŋ/|n|Đo và kiểm tra
+acceptance criteria|tiêu chí nghiệm thu|/əkˈseptəns kraɪˈtɪriə/|n|Đo và kiểm tra
+defect|khuyết tật|/ˈdiːfekt/|n|Đo và kiểm tra
+measurement|phép đo|/ˈmeʒərmənt/|n|Đo và kiểm tra
+test method|phương pháp thử|/test ˈmeθəd/|n|Đo và kiểm tra
+colour coding|mã màu|/ˈkʌlər ˈkoʊdɪŋ/|n|Mã màu
+identification band|dải nhận dạng (trên ống)|/aɪˌdentɪfɪˈkeɪʃn bænd/|n|Mã màu
+signal red|đỏ tín hiệu|/ˈsɪɡnəl red/|n|Mã màu
+flow direction|hướng dòng chảy|/floʊ dəˈrekʃn/|n|Mã màu
+light grey|xám nhạt|/laɪt ɡreɪ/|n|Mã màu
+light blue|xanh dương nhạt|/laɪt bluː/|n|Mã màu
+emerald green|xanh lục bảo|/ˈemərəld ɡriːn/|n|Mã màu
+ventilation|thông gió|/ˌventɪˈleɪʃn/|n|An toàn
+hazard|mối nguy hiểm|/ˈhæzərd/|n|An toàn
+health|sức khỏe|/helθ/|n|An toàn`;
+const TL={'Cơ bản':1,'Từ cơ bản trong tài liệu':1,'Con người và đơn vị':1,'Công việc hằng ngày':1,'Vật liệu sơn':2,'Dụng cụ và thiết bị':2,'Chuẩn bị bề mặt':2,'Môi trường làm việc':2,'An toàn':2,'Mã màu':2,'Thi công sơn':3,'Đo và kiểm tra':3,'Coating Inspection':3,'Offshore Fabrication':3,'Hệ sơn kỹ thuật':4,'Viết tắt':4};
+function mergeVocab(){if((S.vocabV||0)>=1)return;const have=new Set(S.words.map(w=>w.en.toLowerCase()));EXTRA.split('\n').forEach((l,i)=>{const a=l.split('|');if(a.length<5||have.has(a[0].toLowerCase()))return;have.add(a[0].toLowerCase());S.words.push(mk([a[0],a[1],a[2],a[3],a[4]],S.words.length+i))});const lv=w=>TL[w.topic]||3,nw=S.words.filter(w=>w.st=='New').map((w,i)=>[w,i]).sort((x,y)=>lv(x[0])-lv(y[0])||x[1]-y[1]).map(x=>x[0]);let k=0;S.words=S.words.map(w=>w.st=='New'?nw[k++]:w);S.vocabV=1}
+/* BÀI HỌC HẰNG NGÀY (11 bước) */
+const STEPS=['Vocabulary','Grammar','Fill in the blanks','Word Hint','Sentence Scramble','Multiple Choice','Error Correction','Translation','Workplace Situations','Reading Comprehension','Final Test'];
+const BANK=[
+{t:'Động từ to be: I am / He is / We are',g:'<p><b>to be</b> nghĩa là “là”. Công thức: <b>Chủ ngữ + am/is/are + danh từ</b>.</p><p>I <b>am</b> · You <b>are</b> · He/She <b>is</b> · We/They <b>are</b></p><p>I am an engineer. = Tôi là kỹ sư.<br>He is a painter. = Anh ấy là thợ sơn.</p>',
+s:[['I am an engineer.','Tôi là kỹ sư.','am'],['He is a painter.','Anh ấy là thợ sơn.','is'],['We are engineers.','Chúng tôi là kỹ sư.','are'],['You are an inspector.','Bạn là người kiểm tra.','are'],['She is a supervisor.','Cô ấy là giám sát.','is'],['They are contractors.','Họ là nhà thầu.','are']],
+er:[['He are an engineer.','He is an engineer.','Với He/She dùng “is”, không dùng “are”.'],['I is a painter.','I am a painter.','Với I luôn dùng “am”.']],
+u:{p:'Giới thiệu với khách hàng: bạn là kỹ sư.',h:'I am + an engineer.',k:['\\bi am\\b|\\bi[\'’]m\\b','engineer'],m:'I am an engineer.'},
+rd:{t:'Nam is an engineer. He works for a company. The company builds offshore platforms.',v:'Nam là kỹ sư. Anh ấy làm việc cho một công ty. Công ty chế tạo các giàn ngoài khơi.',n:'works, builds: chủ ngữ số ít (He, company) thêm -s. Sẽ học ở bài thì hiện tại đơn.',q:[['Who is Nam?',['An engineer','A painter','An inspector'],0],['What does the company build?',['Offshore platforms','Houses','Ships'],0]]}},
+{t:'Câu phủ định với to be',g:'<p>Phủ định: thêm <b>not</b> sau am/is/are.</p><p>I am <b>not</b> · He is <b>not</b> (isn’t) · They are <b>not</b> (aren’t)</p><p>The scaffolding is not ready. = Giàn giáo chưa sẵn sàng.</p>',
+s:[['I am not a welder.','Tôi không phải thợ hàn.','not'],['He is not an inspector.','Anh ấy không phải người kiểm tra.','not'],['The platform is not ready.','Giàn chưa sẵn sàng.','not'],['The scaffolding is ready.','Giàn giáo đã sẵn sàng.','ready'],['We are not late.','Chúng tôi không trễ.','not'],['The painting is complete.','Công tác sơn đã hoàn thành.','complete']],
+er:[['I am not a engineer.','I am not an engineer.','Dùng “an” trước âm nguyên âm (engineer).'],['She not is a painter.','She is not a painter.','“not” đứng sau is.']],
+u:{p:'Báo với cấp trên: giàn giáo chưa sẵn sàng.',h:'The scaffolding + is not + ready.',k:['scaffolding','\\bnot\\b|n[\'’]t','ready'],m:'The scaffolding is not ready.'},
+rd:{t:'The platform is in Vung Tau. The scaffolding is ready. The painting is not complete.',v:'Giàn ở Vũng Tàu. Giàn giáo đã sẵn sàng. Công tác sơn chưa hoàn thành.',n:'in = ở (chỉ nơi chốn); complete = hoàn thành.',q:[['Is the scaffolding ready?',['Yes','No','Not known'],0],['Is the painting complete?',['Yes','No','Not known'],1]]}},
+{t:'Câu hỏi với to be',g:'<p>Câu hỏi: đưa <b>am/is/are</b> lên đầu câu.</p><p><b>Is</b> the paint ready? · <b>Are</b> you an engineer?</p><p>Trả lời: Yes, it is. / No, it is not.</p>',
+s:[['Is the paint ready?','Sơn đã sẵn sàng chưa?','is'],['Are you an engineer?','Bạn có phải kỹ sư không?','are'],['Is the platform complete?','Giàn đã hoàn thành chưa?','is'],['Are they contractors?','Họ có phải nhà thầu không?','are'],['Yes, it is.','Vâng, đúng vậy.','is'],['No, it is not.','Không, chưa.','not']],
+er:[['Are the paint ready?','Is the paint ready?','“paint” là số ít nên dùng “Is”.'],['You are an engineer?','Are you an engineer?','Câu hỏi: đưa “are” lên đầu câu.']],
+u:{p:'Hỏi đồng nghiệp: giàn giáo đã sẵn sàng chưa?',h:'Is + the scaffolding + ready?',k:['\\bis\\b','scaffolding','ready'],m:'Is the scaffolding ready?'},
+rd:{t:'Is the painting complete? Yes, it is. Is the scaffolding ready? No, it is not.',v:'Công tác sơn đã hoàn thành chưa? Rồi. Giàn giáo đã sẵn sàng chưa? Chưa.',n:'it = nó (thay cho vật/việc đã nhắc).',q:[['Is the painting complete?',['Yes','No','Not known'],0],['Is the scaffolding ready?',['Yes','No','Not known'],1]]}}];
+const PL=['am','is','are','not'],nz=s=>s.toLowerCase().replace(/[.,!?'’"]/g,'').replace(/\s+/g,' ').trim(),
+bl=(en,k)=>en.replace(new RegExp('\\b'+k+'\\b','i'),'_____'),
+MC=(id,sk,p,o,a,e,x)=>Object.assign({id,sk,t:'mc',p,o:sh(o),a:[a],e:e||''},x||{}),
+TX=(id,sk,p,a,m,e,x)=>Object.assign({id,sk,t:'txt',p,a:a.map(nz),m,e:e||''},x||{});
+function build(s,B,W){const P='s'+s+'_',q=[],po=B.s.filter(x=>PL.includes(x[2])),
+gm=(x,id)=>MC(id,'gra','Chọn từ đúng:<br><b>'+esc(bl(x[0],x[2]))+'</b><br><small>'+esc(x[1])+'</small>',[x[2],...PL.filter(p=>p!=x[2]).slice(0,2)],x[2],'Câu đầy đủ: '+esc(x[0])),
+tr=(x,id)=>MC(id,'read','Dịch nghĩa câu:<br><b>'+esc(x[0])+'</b>',[x[1],...sh(BANK.flatMap(b=>b.s.map(y=>y[1])).filter(v=>v!=x[1])).slice(0,3)],x[1],esc(x[0])+' = '+esc(x[1])),
+vm=(w,id)=>MC(id,'voc','Nghĩa của <b>'+esc(w.en)+'</b> là gì?',[w.vi,...sh(S.words.filter(y=>y.id!=w.id)).slice(0,3).map(y=>y.vi)],w.vi,esc(w.en)+' = '+esc(w.vi),{w:w.id}),
+rq=(x,id)=>MC(id,'read',esc(x[0]),x[1],x[1][x[2]],'Đáp án: '+esc(x[1][x[2]]));
+if(s==0){q.push({id:P+'i',t:'info',p:'<h3>Từ mới hôm nay</h3>'+W.map(w=>`<p><b>${esc(w.en)}</b> ${esc(w.ipa)} = ${esc(w.vi)}${w.ex?'<br><small>'+esc(w.ex)+' – '+esc(w.exvi)+'</small>':''}</p>`).join('')+'<p>Đọc kỹ rồi bấm tiếp. Bạn sẽ được kiểm tra ngay sau đó.</p>'});W.forEach((w,i)=>q.push(vm(w,P+i)))}
+if(s==1){q.push({id:P+'i',t:'info',p:'<h3>Ngữ pháp: '+esc(B.t)+'</h3>'+B.g});po.slice(0,2).forEach((x,i)=>q.push(gm(x,P+i)))}
+if(s==2)B.s.slice(0,4).forEach((x,i)=>q.push(TX(P+i,'sen','Điền từ còn thiếu:<br><b>'+esc(bl(x[0],x[2]))+'</b><br><small>'+esc(x[1])+'</small>',[x[2]],x[0],'Câu đầy đủ: '+esc(x[0]))));
+if(s==3)W.forEach((w,i)=>q.push(TX(P+i,'voc','Nghĩa: <b>'+esc(w.vi)+'</b><br>Gợi ý: <b>'+esc(w.en.split('').map((c,j)=>j==0||c==' '||c=='-'?c:'_').join(' '))+'</b>',[w.en],w.en,'Từ đúng: '+esc(w.en),{w:w.id})));
+if(s==4)B.s.slice(2,5).forEach((x,i)=>q.push({id:P+i,sk:'sen',t:'ord',p:'Sắp xếp thành câu:<br><small>'+esc(x[1])+'</small>',o:sh(x[0].replace(/[.?!,]/g,'').split(' ')),a:[nz(x[0])],m:x[0],e:'Câu đúng: '+esc(x[0])}));
+if(s==5)(po.length>3?po.slice(2,6):po.slice(0,4)).forEach((x,i)=>q.push(gm(x,P+i)));
+if(s==6)B.er.forEach((x,i)=>q.push(TX(P+i,'sen','Tìm lỗi và viết lại câu đúng:<br><b>'+esc(x[0])+'</b>',[x[1]],x[1],esc(x[2]))));
+if(s==7){B.s.slice(3,5).forEach((x,i)=>q.push(TX(P+i,'sen','Dịch sang tiếng Anh:<br><b>'+esc(x[1])+'</b>',[x[0]],x[0],'Mẫu: '+esc(x[0]))));[B.s[0],B.s[5]].forEach((x,i)=>q.push(tr(x,P+'t'+i)))}
+if(s==8)q.push({id:P+'0',sk:'work',sk2:'wri',t:'free',p:esc(B.u.p),h:B.u.h,kw:B.u.k,m:B.u.m,e:'Câu mẫu: '+esc(B.u.m)});
+if(s==9){q.push({id:P+'i',t:'info',p:'<h3>Đọc đoạn văn</h3><p style="font-size:18px">'+esc(B.rd.t)+'</p><p><small>Tự đọc rồi trả lời. Bản dịch hiện sau cùng.</small></p>'});B.rd.q.forEach((x,i)=>q.push(rq(x,P+i)));q.push({id:P+'z',t:'info',p:'<h3>Bản dịch</h3><p>'+esc(B.rd.v)+'</p><p><b>Lưu ý:</b> '+esc(B.rd.n)+'</p>'})}
+if(s==10){let n=0;const f=o=>(o.f=1,q.push(o));W.slice(0,3).forEach(w=>f(vm(w,P+n++)));po.slice(0,2).forEach(x=>f(gm(x,P+n++)));f(tr(B.s[1],P+n++));f(tr(B.s[4],P+n++));f(rq(B.rd.q[0],P+n++))}
+return q}
+const cur=s=>{const L=S.lesson;return build(s,BANK[L.n],L.w.map(id=>S.words.find(w=>w.id==id)).filter(Boolean))};
+function enter(s){const L=S.lesson;L.step=s;L.pend=cur(s).map(q=>q.id);L.tot=cur(s).filter(q=>q.t!='info').length;L.ok=0;L.tried={};L.fd=0;save();LS()}
+function startLesson(){const W=S.words.filter(w=>w.st=='New').slice(0,5);S.lesson={d:T(),n:S.ln||0,w:W.map(w=>w.id),step:0,pend:[],miss:{},tried:{},ok:0,tot:0,sc:[]};enter(0)}
+function LS(){const L=S.lesson,m=$('#main'),ban=S.rescue?'<div class=card style="border-left:5px solid #c0392b">RESCUE MODE đang bật. Bạn vẫn học tiếp bài hôm nay; mọi câu sai đều có giải thích và được làm lại.</div>':'';
+if(!L){if(S.done.includes(T()))return m.innerHTML=ban+'<div class=card><h3 class=g>Hôm nay bạn đã hoàn thành bài học.</h3><p>Hãy ôn tập từ cần ôn, rồi quay lại vào ngày mai.</p></div>';
+const li=S.ln||0;if(li>=BANK.length)return m.innerHTML=ban+'<div class=card>Đã hết bài trong ngân hàng bài học hiện có ('+BANK.length+' bài). Cần bổ sung bài mới.</div>';
+if(S.words.filter(w=>w.st=='New').length<3)return m.innerHTML=ban+'<div class=card>Kho từ còn dưới 3 từ mới. Hãy nhập thêm từ ở mục Kho từ.</div>';
+return m.innerHTML=ban+`<div class=card><h3>Bài ${li+1}: ${esc(BANK[li].t)}</h3><p>11 bước, khoảng 25–40 phút. Làm xong bước này mới mở bước sau. Tiến độ được lưu sau mỗi câu.</p><button onclick="startLesson()">Bắt đầu bài hôm nay</button></div>`}
+stepRender(ban)}
+function stepRender(ban){const L=S.lesson;if(!L.pend.length)return fin();const q=cur(L.step).find(x=>x.id==L.pend[0]);if(!q){L.pend.shift();save();return stepRender(ban)}
+window.CQ=q;window._pk=[];let b='';
+if(q.t=='info')b=q.p+'<button onclick="pass()">Tiếp tục</button>';
+else if(q.t=='mc')b=q.p+q.o.map((x,i)=>`<button class=opt onclick="gr(CQ.o[${i}]==CQ.a[0])">${esc(x)}</button>`).join('');
+else if(q.t=='txt')b=q.p+'<br><input id=ai style="width:90%" onkeydown="if(event.key==\'Enter\')gt()"><button onclick="gt()">Trả lời</button>';
+else if(q.t=='ord')b=q.p+'<p id=pk style="min-height:34px;font-size:18px"></p>'+q.o.map((x,i)=>`<button id=t${i} class=s onclick="pk(${i})">${esc(x)}</button>`).join('')+'<p><button onclick="stepRender()">Xóa</button><button onclick="go2()">Kiểm tra</button></p>';
+else b=q.p+'<p><small>Gợi ý cấu trúc: '+esc(q.h)+'</small></p><textarea id=ai rows=2 style="width:90%"></textarea><button onclick="gf()">Gửi</button>';
+$('#main').innerHTML=(ban||'')+`<div class=card><small>Bước ${L.step+1}/11: ${STEPS[L.step]} – còn ${L.pend.length} mục</small><div class=bar><i style="width:${Math.round(L.step*100/11)}%"></i></div></div><div class=card>${b}</div>`}
+function pass(){S.lesson.pend.shift();save();stepRender()}
+function pk(i){_pk.push(i);$('#t'+i).style.display='none';$('#pk').textContent=_pk.map(j=>CQ.o[j]).join(' ')}
+function go2(){if(_pk.length<CQ.o.length)return alert('Hãy dùng hết các từ');gr(nz(_pk.map(j=>CQ.o[j]).join(' '))==CQ.a[0])}
+function gt(){const v=$('#ai').value.trim();if(!v)return;gr(CQ.a.includes(nz(v)))}
+function gf(){const v=$('#ai').value.trim().toLowerCase();if(!v)return;gr(CQ.kw.every(r=>new RegExp(r).test(v)))}
+function gr(ok){const L=S.lesson,q=CQ,first=!L.tried[q.id];L.tried[q.id]=1;
+if(first&&q.sk){[q.sk,q.sk2].filter(Boolean).forEach(k=>{S.sk[k].n++;ok&&S.sk[k].ok++});ok&&L.ok++}
+if(q.w){const w=S.words.find(x=>x.id==q.w);if(w){upd(w,ok);w.learned=w.learned||T()}}
+L.pend.shift();let note='';
+if(!ok){L.miss[q.id]=(L.miss[q.id]||0)+1;if(!q.f&&L.miss[q.id]<3){const z=L.pend.length&&/z$/.test(L.pend[L.pend.length-1])?1:0;L.pend.splice(L.pend.length-z,0,q.id);note='Bạn sẽ làm lại câu này ở cuối bước.'}else note=q.f?'':'Đã sai 3 lần: hãy ghi nhớ đáp án rồi đi tiếp.'}
+if(!ok&&q.w){S.err.n++;if(S.err.n>=4&&!S.rescue){save();return startRescue()}}
+save();hdr();$('#main').innerHTML=`<div class=card><h3 class="${ok?'g':'r'}">${ok?'Đúng':'Chưa đúng'}</h3><p>${q.e||''}</p>${!ok&&q.m&&q.t!='mc'?'<p>Đáp án mẫu: <b>'+esc(q.m)+'</b></p>':''}<p class=r>${note}</p><button onclick="stepRender()">Tiếp tục</button></div>`}
+function fin(){const L=S.lesson,s=L.step,pct=L.tot?Math.round(L.ok*100/L.tot):100,m=$('#main');L.sc[s]=pct;save();
+if(s==10){if(!L.fd){S.ft.push({d:T(),p:pct});L.fd=1;save()}
+if(pct<80)return m.innerHTML=`<div class=card><h3 class=r>Final Test: ${pct}% – chưa đạt (cần 80%)</h3><p>Hãy làm lại bài kiểm tra cuối ngày.</p><button onclick="enter(10)">Làm lại Final Test</button></div>`;
+S.done.includes(T())||S.done.push(T());S.ln=L.n+1;S.lesson=null;save();hdr();
+return m.innerHTML=`<div class=card><h2 class=g>Hoàn thành bài hôm nay</h2><p>Final Test: ${pct}%</p><p>${L.sc.map((v,i)=>STEPS[i]+' '+v+'%').join(' · ')}</p><button onclick="go('garden')">Xem khu vườn</button></div>`}
+m.innerHTML=`<div class=card><h3 class=g>Hoàn thành bước ${s+1}: ${STEPS[s]}</h3><p>Đúng ngay lần đầu: ${L.ok}/${L.tot} (${pct}%)</p><button onclick="enter(${s+1})">Mở bước ${s+2}: ${STEPS[s+1]}</button></div>`}
+function SK(){const N={voc:'Vocabulary – Từ vựng',gra:'Grammar – Ngữ pháp',sen:'Sentence Building – Xây dựng câu',read:'Reading – Đọc hiểu',wri:'Writing – Viết',work:'Workplace Communication – Giao tiếp công việc'};
+return '<h4>Kỹ năng (tính theo lần trả lời đầu tiên)</h4>'+Object.keys(N).map(k=>{const a=S.sk[k];return `<p>${N[k]}: ${a.n?a.ok+'/'+a.n+' đúng ('+Math.round(a.ok*100/a.n)+'%)':'Chưa có dữ liệu'}<div class=bar><i style="width:${a.n?a.ok*100/a.n:0}%"></i></div></p>`}).join('')+'<p>Listening – Nghe hiểu: chưa có bài tập nghe.</p>'}
+
+/* FLASHCARD */
+const FM={due:'Cần ôn hôm nay',hard:'Từ khó',all:'Tất cả từ đã học',new:'Từ mới (xem trước)'},
+fcDeck=k=>S.words.filter(w=>k=='new'?w.st=='New':w.st!='New'&&(k=='all'||(k=='due'?w.next<=T():w.st=='Difficult')));
+V.flash=()=>{$('#main').innerHTML='<div class=card><h3>Flashcard</h3><p>Lật thẻ, tự nhớ nghĩa trước, rồi chọn Đã nhớ hoặc Chưa nhớ. Mỗi lượt tối đa 20 thẻ.</p>'+Object.keys(FM).map(k=>`<button onclick="fcStart('${k}')">${FM[k]} (${fcDeck(k).length})</button>`).join('')+'</div>'};
+function fcStart(k){const d=sh(fcDeck(k)).slice(0,20);if(!d.length)return alert('Bộ thẻ này đang trống');window._fc={k,d:d.map(w=>w.id),i:0,dir:(window._fc||{}).dir||0,rq:{},ok:0};fcShow()}
+function fcShow(){const F=_fc,w=S.words.find(x=>x.id==F.d[F.i]);if(!w)return fcEnd();
+const en=esc(w.en)+'<small>'+esc(w.ipa)+'</small>',vi=esc(w.vi)+(w.ex?'<small>'+esc(w.ex)+'</small>':'');
+$('#main').innerHTML=`<div class=card><small>Thẻ ${F.i+1}/${F.d.length}</small><div class=bar><i style="width:${Math.round(F.i*100/F.d.length)}%"></i></div><div class=fc onclick="fcFlip()"><div class=ff><div class=face>${F.dir?esc(w.vi):en}</div><div class="face back">${F.dir?en:vi}</div></div></div><p style="text-align:center"><small>Chạm vào thẻ để lật</small></p><div id=rt style="display:none"><button class=s onclick="fcRate(0)">Chưa nhớ</button><button onclick="fcRate(1)">Đã nhớ</button></div><button class=s onclick="fcSay()">Nghe</button><button class=s onclick="_fc.dir^=1;fcShow()">Đổi chiều</button></div>`}
+function fcFlip(){$('.fc').classList.toggle('flip');$('#rt').style.display='block'}
+function fcSay(){const w=S.words.find(x=>x.id==_fc.d[_fc.i]);if(window.speechSynthesis){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(w.en);u.lang='en-US';u.rate=.85;speechSynthesis.speak(u)}else alert('Thiết bị chưa hỗ trợ phát âm')}
+function fcRate(ok){const F=_fc,w=S.words.find(x=>x.id==F.d[F.i]);if(ok)F.ok++;else{if(w.st!='New')w.next=T();if(!F.rq[w.id]){F.rq[w.id]=1;F.d.push(w.id)}}save();F.i++;fcShow()}
+function fcEnd(){const F=_fc;$('#main').innerHTML=`<div class=card><h3 class=g>Hoàn thành lượt flashcard</h3><p>Đã nhớ ngay: ${F.ok}/${F.d.length-Object.keys(F.rq).length} thẻ. Thẻ chưa nhớ của từ đã học được đưa vào lịch ôn hôm nay. Flashcard không tự đánh dấu từ là đã ghi nhớ; việc đó chỉ xảy ra qua bài kiểm tra.</p><button onclick="fcStart('${F.k}')">Học tiếp bộ này</button><button class=s onclick="V.flash()">Chọn bộ khác</button></div>`}
+
+/* DASHBOARD */
+const bars=(v,mx,lab,ok)=>{const n=v.length,w=300/n;return `<svg viewBox="0 0 300 92" width="100%" role="img">${v.map((x,i)=>{const hh=mx?Math.max(3,Math.round(60*x/mx)):3;return `<rect class="${x>0?(ok(x)?'b1':'b2'):'b0'}" x="${i*w+3}" y="${70-hh}" width="${w-6}" height="${hh}" rx="4"/><text x="${i*w+w/2}" y="86" text-anchor="middle" class="lb">${lab[i]}</text>`}).join('')}</svg>`};
+function goLearn(){tab='lesson';hdr();if(S.lesson||S.done.includes(T())||(S.ln||0)>=BANK.length||S.words.filter(w=>w.st=='New').length<3)return LS();startLesson()}
+V.home=()=>{const hr=+new Date().toLocaleString('en-US',{timeZone:'Asia/Ho_Chi_Minh',hour:'numeric',hour12:false})%24,gt=hr<12?'Chào buổi sáng':hr<18?'Chào buổi chiều':'Chào buổi tối',L=S.lesson,done=S.done.includes(T()),li=S.ln||0,left=li>=BANK.length;
+let msg,btn,pct;
+if(done&&!L){msg='Hôm nay bạn đã hoàn thành bài học. Hãy củng cố bằng flashcard hoặc ôn tập.';btn=`<button class=cta onclick="go('flash')">ÔN BẰNG FLASHCARD</button>`;pct=100}
+else if(L){msg=`Bài ${L.n+1} đang học dở: bước ${L.step+1}/11 (${STEPS[L.step]}).`;btn=`<button class=cta onclick="goLearn()">TIẾP TỤC HỌC</button>`;pct=Math.round(L.step*100/11)}
+else if(left){msg='Đã hết bài trong ngân hàng bài học hiện có. Hãy ôn tập và luyện flashcard.';btn=`<button class=cta onclick="go('flash')">LUYỆN FLASHCARD</button>`;pct=0}
+else{msg=`Mục tiêu hôm nay: hoàn thành Bài ${li+1} (11 bước, 25–40 phút).`;btn=`<button class=cta onclick="goLearn()">BẮT ĐẦU HỌC</button>`;pct=0}
+const days=[...Array(14)].map((_,i)=>add(T(),i-13)),sc=S.ft.slice(-10),dc=due().length,
+st=[['New','Mới','#c3cfc6'],['Learning','Đang học','var(--b)'],['Reviewing','Đang ôn','var(--y)'],['Remembered','Đã nhớ','var(--g)'],['Difficult','Khó','#d0473a']],tot=S.words.length||1,
+todo=[];if(S.rescue)todo.push(['RESCUE MODE: cần hoàn thành bài cứu cây',"rescueView()",'Làm ngay']);
+if(L&&L.step==10)todo.push(['Final Test cuối ngày đang chờ bạn','goLearn()','Làm bài']);
+if(L&&L.step<10)todo.push([`Bài ${L.n+1}: còn ${11-L.step} bước (bước ${L.step+1}: ${STEPS[L.step]})`,'goLearn()','Tiếp tục']);
+if(dc)todo.push([`${dc} từ đến hạn ôn tập`,"go('review')",'Ôn tập']);
+if(!L&&!done&&!left)todo.push([`Bài ${li+1} chưa bắt đầu`,'goLearn()','Bắt đầu']);
+$('#main').innerHTML=`<div class=hero><p>${gt}${S.set.name?', '+esc(S.set.name):''}!</p><h2>${msg}</h2><div class=bar><i style="width:${pct}%"></i></div>${btn}</div>
+<div class=grid><div class=k>Ngày liên tiếp<b>${streak()}</b></div><div class=k>Từ đã học<b>${learned().length}</b></div><div class=k>Cần ôn tập<b>${dc}</b></div><div class=k>Lượt sai còn lại<b>${Math.max(0,3-S.err.n)}</b></div></div>
+<div class=card><h3>Việc cần làm</h3>${todo.length?todo.map(t=>`<div class=row><span>${esc(t[0])}</span><button onclick="${t[1]}">${t[2]}</button></div>`).join(''):'<p>Không có việc tồn đọng. Hãy luyện flashcard để củng cố từ vựng.</p>'}</div>
+<div class=card><h3>Tiến độ học tập</h3><h4>14 ngày gần đây (ngày hoàn thành bài)</h4>${bars(days.map(d=>S.done.includes(d)?1:0),1,days.map(d=>d.slice(8)),x=>x>0)}
+<h4>Điểm Final Test gần đây</h4>${sc.length?bars(sc.map(x=>x.p),100,sc.map(x=>x.d.slice(5)),x=>x>=80)+'<small>Xanh: đạt 80% trở lên</small>':'<p><small>Chưa có bài Final Test nào.</small></p>'}
+<h4>Kho từ vựng (${S.words.length} từ)</h4><div class=stack>${st.map(s=>`<i style="width:${cnt(s[0])*100/tot}%;background:${s[2]}"></i>`).join('')}</div><small>${st.map(s=>`<span class=dot style="background:${s[2]}"></span>${s[1]} ${cnt(s[0])}`).join('')}</small></div>`};
+V.lesson=LS;
+init();hdr();go('home');
+</script></body></html>
