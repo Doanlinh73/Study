@@ -38,3 +38,9 @@ Cách khác không cần GitHub: cài `npm i -g vercel`, chạy `vercel` trong t
 - Cài đặt một lần: chạy file `supabase.sql` trong Supabase > SQL Editor (file này không đưa lên GitHub).
 - Mã đồng bộ `SB_CODE` nằm trong `index.html`; ai có mã này mới đọc/ghi được tiến độ. Export HTML đã được loại bỏ mã này.
 - Nút "Đồng bộ ngay" ở mục Cài đặt để đồng bộ thủ công. Sao lưu/Khôi phục JSON vẫn dùng được.
+
+## Giao diện mới (v3)
+- Menu bên phải (thu gọn được; trên điện thoại là nút ☰): Trang chủ, Kho từ vựng, Luyện tập, Kiểm tra, Tiến trình học, Cài đặt. Các tab cũ nằm trong thanh chip phía trên mỗi mục.
+- 3 trái tim: sai 1 câu mất 1 tim; hết tim thì hiện modal cứu hộ (trả lời 1 câu để hồi 1 tim, quay lại đúng câu đang làm).
+- Kho từ vựng: thêm/sửa/xóa, tìm kiếm, lọc, sắp xếp, phân trang, Import Excel (có xem trước, kiểm tra trùng), tải file Excel mẫu, Export Excel. Cần mạng để tải thư viện ExcelJS từ cdnjs.
+- Sao lưu/Khôi phục JSON nằm trong Cài đặt.
