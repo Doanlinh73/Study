@@ -30,6 +30,7 @@ input,select,textarea{font:inherit;font-size:16px;padding:10px;border:1px solid 
 .w{border-bottom:1px solid var(--bd);padding:10px 4px;cursor:pointer}.w .m{display:none;color:var(--b)}.w.open .m{display:block}
 table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:8px 6px;border-bottom:1px solid var(--bd);text-align:left}
 .sway{transform-origin:150px 260px;animation:sw 4s ease-in-out infinite}@keyframes sw{50%{transform:rotate(1.6deg)}}.wilt{filter:saturate(.6)}
+#cs{position:fixed;left:10px;bottom:calc(6px + env(safe-area-inset-bottom,0px));font-size:11px;color:var(--m);background:var(--bg);opacity:.9;padding:1px 8px;border-radius:6px;pointer-events:none;z-index:30}
 #cr{position:fixed;right:10px;bottom:calc(6px + env(safe-area-inset-bottom,0px));font-size:11px;color:var(--m);background:var(--bg);opacity:.9;padding:1px 8px;border-radius:6px;pointer-events:none;z-index:30}
 .fc{perspective:1000px;height:230px;cursor:pointer;margin:10px 0}.ff{position:relative;height:100%;transition:transform .5s;transform-style:preserve-3d}.fc.flip .ff{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;border-radius:18px;border:2px solid var(--bd);background:var(--c);box-shadow:var(--sh);font-size:24px}.face small{font-size:15px;color:var(--m);margin-top:6px}.face.back{transform:rotateY(180deg);background:var(--hl)}
@@ -48,7 +49,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:8px 6px;b
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
 <header><h1>OFFSHORE ENGLISH GARDEN – KHU VƯỜN TIẾNG ANH CỦA TÔI</h1><div id="hd"></div></header>
-<nav id="nav"></nav><main id="main"></main><div id="cr">Bản quyền © 2026 Đoàn Linh</div>
+<nav id="nav"></nav><main id="main"></main><div id="cr">Bản quyền © 2026 Đoàn Linh</div><div id="cs" class="sy"></div>
 <script id="seed" type="application/json"></script>
 <script>
 const K='oeg',TABS=[['home','Trang chủ'],['garden','Khu vườn của tôi'],['lesson','Bài học hôm nay'],['learn','Học từ mới'],['flash','Flashcard'],['review','Ôn tập'],['test','Kiểm tra'],['kho','Kho từ tiếng Anh'],['road','Lộ trình 120 ngày'],['stats','Thống kê'],['set','Cài đặt']];
@@ -86,18 +87,33 @@ sh=a=>[...a].sort(()=>Math.random()-.5),
 add=(d,n)=>{const x=new Date(d+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)},
 diff=(a,b)=>Math.round((new Date(b)-new Date(a))/864e5),
 esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),
-save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}},
+saveLocal=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}},
+save=()=>{S.ts=Date.now();saveLocal();cloudSoon()},
 dl=(n,t,m)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click()},
 mk=(a,i)=>({id:Date.now()+'-'+i+Math.random().toString(36).slice(2,5),en:a[0],vi:a[1],ipa:a[2]||'',type:a[3]||'',topic:a[4]||'Khác',ex:a[5]||'',exvi:a[6]||'',added:T(),learned:'',last:'',next:'',ok:0,bad:0,lv:0,st:'New'});
 let S,Q=null,tab='garden';
+/* ===== Đồng bộ tiến độ qua Supabase (không cần đăng nhập) ===== */
+const SB_URL='https://wqdzrprdifgregkpazgb.supabase.co',SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndxZHpycHJkaWZncmVna3BhemdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQwOTU2NDksImV4cCI6MjEwOTY3MTY0OX0.9YJufB6YrCrexoGJyltYOZ9cnftui0kkRJSWYwCtsyE',SB_CODE='a8473f0233d210c0fa4d035ec53df4fd5952cf14b3cfcdb8';
+let cloudT=null,cloudReady=false,cloudSt=SB_CODE?'Chưa đồng bộ':'Chỉ lưu trên máy này';
+function cloudStatus(m){cloudSt=m;document.querySelectorAll('.sy').forEach(e=>e.textContent=m)}
+async function sbRpc(fn,obj,keep){const b=JSON.stringify(obj),r=await fetch(SB_URL+'/rest/v1/rpc/'+fn,{method:'POST',keepalive:!!keep&&b.length<60000,headers:{'Content-Type':'application/json',apikey:SB_KEY,Authorization:'Bearer '+SB_KEY},body:b});if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}
+function cloudSoon(){if(!SB_CODE)return;clearTimeout(cloudT);cloudT=setTimeout(()=>cloudPush(),1500);cloudStatus('Đang chờ đồng bộ…')}
+async function cloudPush(keep){clearTimeout(cloudT);cloudT=null;if(!SB_CODE||!cloudReady)return;try{const ok=await sbRpc('save_progress',{p_code:SB_CODE,p_data:S},keep);cloudStatus(ok?'Đã đồng bộ ✓':'Lỗi: chưa tạo dòng dữ liệu trên Supabase')}catch(e){cloudStatus('Chưa đồng bộ (mất mạng hoặc lỗi)')}}
+const busy=()=>!!Q||tab==='lesson'||(tab==='flash'&&window._fc&&window._fc.i<window._fc.d.length);
+async function cloudPull(){if(!SB_CODE)return;if(busy()&&cloudReady)return;cloudStatus('Đang đồng bộ…');try{const d=await sbRpc('get_progress',{p_code:SB_CODE}),has=d&&d.words;cloudReady=true;
+if(has&&(d.ts||0)>(S.ts||0)){S=d;norm();saveLocal();window._rw=null;window._fc=null;hdr();go(tab);cloudStatus('Đã đồng bộ ✓')}
+else if(!has||(S.ts||0)>(d.ts||0))await cloudPush();else cloudStatus('Đã đồng bộ ✓')}catch(e){cloudStatus('Chưa đồng bộ (mất mạng hoặc lỗi)')}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){if(cloudT)cloudPush(true)}else cloudPull()});
+window.addEventListener('pagehide',()=>{if(cloudT)cloudPush(true)});
 function init(){let seed=null,raw=null;try{seed=JSON.parse(document.getElementById('seed').textContent||'null')}catch(e){}
 try{raw=localStorage.getItem(K)}catch(e){}
 try{S=raw?JSON.parse(raw):null}catch(e){S=null}
 if(seed&&(!S||S.seedId!==seed.seedId)){S=seed.data;S.seedId=seed.seedId}
 if(!S)S={words:DEF.map(mk),done:[],err:{d:'',n:0},rescue:null,set:{start:T(),name:''}};
-S.v=2;S.sk=S.sk||{};['voc','gra','sen','read','wri','work'].forEach(k=>S.sk[k]=S.sk[k]||{n:0,ok:0});S.ln=S.ln||0;S.ft=S.ft||[];S.lesson=S.lesson||null;mergeVocab();if(S.err.d!==T())S.err={d:T(),n:0};save()}
+norm();saveLocal()}
+function norm(){S.v=2;S.sk=S.sk||{};['voc','gra','sen','read','wri','work'].forEach(k=>S.sk[k]=S.sk[k]||{n:0,ok:0});S.ln=S.ln||0;S.ft=S.ft||[];S.lesson=S.lesson||null;S.err=S.err||{d:'',n:0};mergeVocab();if(S.err.d!==T())S.err={d:T(),n:0}}
 function exportHTML(){const c=document.documentElement.cloneNode(true);
-c.querySelector('#seed').textContent=JSON.stringify({seedId:Date.now()+'',data:S}).replace(/</g,'\\u003c');
+c.querySelectorAll('script:not(#seed)').forEach(x=>{x.textContent=x.textContent.split(SB_CODE).join('')});c.querySelector('#seed').textContent=JSON.stringify({seedId:Date.now()+'',data:S}).replace(/</g,'\\u003c');
 dl('offshore-english-garden-export.html','<!DOCTYPE html>\n'+c.outerHTML,'text/html')}
 const cnt=s=>S.words.filter(w=>w.st==s).length,learned=()=>S.words.filter(w=>w.st!='New'),
 due=()=>S.words.filter(w=>w.st!='New'&&(w.next<=T()||w.st=='Difficult')),
@@ -138,6 +154,7 @@ $('#main').innerHTML=`<div class=card><h3>Hôm nay là ngày ${d}/120</h3><div c
 stats(){const ok=S.words.reduce((a,w)=>a+w.ok,0),bad=S.words.reduce((a,w)=>a+w.bad,0),m=['New','Learning','Reviewing','Remembered','Difficult'];
 $('#main').innerHTML=`<div class=card><h3>Thống kê</h3><p>Tỷ lệ đúng: ${ok+bad?Math.round(ok*100/(ok+bad)):0}% (${ok} đúng / ${bad} sai)</p><p>Ngày hoàn thành: ${S.done.length} – Streak: ${streak()}</p>${SK()}${m.map(x=>`<p>${x}: ${cnt(x)}<div class=bar><i style="width:${S.words.length?cnt(x)*100/S.words.length:0}%"></i></div></p>`).join('')}</div>`},
 set(){$('#main').innerHTML=`<div class=card><h3>Cài đặt</h3><p>Tên: <input id=sn value="${esc(S.set.name)}"></p><p>Ngày bắt đầu: <input id=sd type=date value="${S.set.start}"></p><button onclick="S.set.name=$('#sn').value;S.set.start=$('#sd').value||T();save();hdr();alert('Đã lưu')">Lưu</button>
+<hr><p>Đồng bộ đám mây: <b class=sy>${cloudSt}</b></p><button class=s onclick="cloudPull()">Đồng bộ ngay</button>
 <hr><p>Xuất ra một file HTML mới có sẵn toàn bộ dữ liệu và cấu hình hiện tại. Người nhận mở file là thấy ngay, không cần nhập gì thêm. File gốc không thay đổi.</p><button onclick="exportHTML()">Export HTML</button></div>`}};
 function finLearn(){const ws=S.words.filter(w=>w.st=='New').slice(0,6),t=T();ws.forEach(w=>{w.st='Learning';w.learned=t;w.next=add(t,1)});save();hdr();startQuiz(ws,'learn')}
 function addW(){const e=$('#a1').value.trim(),v=$('#a2').value.trim();if(!e||!v)return alert('Cần nhập English và Tiếng Việt');
@@ -530,5 +547,5 @@ $('#main').innerHTML=`<div class=hero><p>${gt}${S.set.name?', '+esc(S.set.name):
 <h4>Điểm Final Test gần đây</h4>${sc.length?bars(sc.map(x=>x.p),100,sc.map(x=>x.d.slice(5)),x=>x>=80)+'<small>Xanh: đạt 80% trở lên</small>':'<p><small>Chưa có bài Final Test nào.</small></p>'}
 <h4>Kho từ vựng (${S.words.length} từ)</h4><div class=stack>${st.map(s=>`<i style="width:${cnt(s[0])*100/tot}%;background:${s[2]}"></i>`).join('')}</div><small>${st.map(s=>`<span class=dot style="background:${s[2]}"></span>${s[1]} ${cnt(s[0])}`).join('')}</small></div>`};
 V.lesson=LS;
-init();hdr();go('home');
+init();hdr();go('home');cloudStatus(cloudSt);cloudPull();
 </script></body></html>

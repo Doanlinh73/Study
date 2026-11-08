@@ -33,6 +33,8 @@ git push -u origin main
 Cách khác không cần GitHub: cài `npm i -g vercel`, chạy `vercel` trong thư mục dự án và làm theo hướng dẫn.
 
 ## Lưu ý về dữ liệu
-- Tiến độ học lưu trong trình duyệt của từng thiết bị (LocalStorage), theo từng tên miền. Đổi tên miền hoặc đổi thiết bị thì tiến độ bắt đầu lại.
-- Muốn chuyển tiến độ: ở Kho từ bấm "Sao lưu JSON" trên thiết bị cũ, rồi "Khôi phục JSON" trên thiết bị mới.
-- Không dùng cơ sở dữ liệu, không cần API key, không có biến môi trường.
+- Tiến độ học vẫn được lưu trong trình duyệt (LocalStorage) và được đồng bộ lên Supabase, nên điện thoại và máy tính dùng chung dữ liệu, không cần đăng nhập.
+- Cách hoạt động: mỗi lần học, web tự gửi tiến độ lên Supabase; mở lại web hoặc quay lại tab thì tải bản mới nhất về. Bản có thời điểm lưu mới hơn sẽ được giữ.
+- Cài đặt một lần: chạy file `supabase.sql` trong Supabase > SQL Editor (file này không đưa lên GitHub).
+- Mã đồng bộ `SB_CODE` nằm trong `index.html`; ai có mã này mới đọc/ghi được tiến độ. Export HTML đã được loại bỏ mã này.
+- Nút "Đồng bộ ngay" ở mục Cài đặt để đồng bộ thủ công. Sao lưu/Khôi phục JSON vẫn dùng được.
