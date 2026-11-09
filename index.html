@@ -79,6 +79,19 @@ main{max-width:none;margin:0 var(--sw) 0 0;padding:18px clamp(12px,3vw,32px)}mai
 .pgn{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:10px}button:disabled{opacity:.4;cursor:default}
 @media(max-width:900px){:root,body.sc{--sw:0px}header,main{margin-right:0}#mb{display:inline-flex}#cr{right:10px}
 nav#nav{width:260px;transform:translateX(100%);box-shadow:var(--sh)}body.so nav#nav{transform:none}#nav .cl{display:none}}
+/* ===== v4: HỌC ĐI - DỐT LẮM RỒI (xanh lá / trắng / kem) ===== */
+:root{--bg:#FBF7EC;--t:#24362b;--m:#6f8577;--g:#2e8b57;--b:#3f9b5f;--br:#8a7a4f;--bd:#E4E8D6;--hl:#EAF4EA;--sh:0 4px 18px #2e8b571f;--sky:#E3F0E0;--lav:#F3EBD3}
+header{background:linear-gradient(135deg,#2e8b57,#5fb36b)!important;color:#fff!important;border:0!important;margin-right:0!important;margin-left:var(--sw)!important}
+header h1{color:#fff!important}#hd span{background:#ffffff2e!important;color:#fff}#hd .hh{background:#fff!important}#mb{order:-1;background:#ffffff33;color:#fff}
+main{margin:0 0 0 var(--sw)!important}
+nav#nav{left:0;right:auto;border-left:0;border-right:1px solid var(--bd)}
+#nav button.on{background:var(--hl);color:#1f6b40}
+#cr{right:10px}#cs{left:calc(var(--sw) + 10px)}
+.lf{transform-box:fill-box;transform-origin:50% 100%;animation:lf 3.2s ease-in-out infinite alternate}@keyframes lf{from{transform:rotate(-6deg)}to{transform:rotate(7deg)}}
+.fl{transform-box:fill-box;transform-origin:center;animation:bl 2.4s ease-in-out infinite alternate}@keyframes bl{from{transform:scale(.7)}to{transform:scale(1.2)}}
+.sway{animation-duration:5s!important}.card svg{animation:pp .9s ease-out}@keyframes pp{from{opacity:.4;transform:scale(.93)}}
+.ig{display:flex;flex-wrap:wrap;gap:8px}.ib{width:58px;min-height:50px!important;padding:0!important;font-size:20px;color:#24362b!important}
+@media(max-width:900px){header,main{margin-left:0!important}nav#nav{transform:translateX(-100%)}body.so nav#nav{transform:none}#cs{left:10px}}
 </style></head><body>
 <header><h1>HỌC ĐI - DỐT LẮM RỒI</h1><div id="hd"></div><button id="mb" onclick="document.body.classList.toggle('so')">☰</button></header>
 <nav id="nav"></nav><main id="main"></main><div id="cr">Bản quyền © 2026 Đoàn Linh</div><div id="cs" class="sy"></div>
@@ -144,10 +157,10 @@ try{S=raw?JSON.parse(raw):null}catch(e){S=null}
 if(seed&&(!S||S.seedId!==seed.seedId)){S=seed.data;S.seedId=seed.seedId}
 if(!S)S={words:DEF.map(mk),done:[],err:{d:'',n:0},rescue:null,set:{start:T(),name:''}};
 norm();saveLocal()}
-function norm(){S.v=2;S.sk=S.sk||{};['voc','gra','sen','read','wri','work'].forEach(k=>S.sk[k]=S.sk[k]||{n:0,ok:0});S.ln=S.ln||0;S.ft=S.ft||[];S.lesson=S.lesson||null;S.err=S.err||{d:'',n:0};S.rescue=null;mergeVocab();if(S.err.d!==T())S.err={d:T(),n:0}}
+function norm(){S.v=2;S.sk=S.sk||{};['voc','gra','sen','read','wri','work'].forEach(k=>S.sk[k]=S.sk[k]||{n:0,ok:0});S.ln=S.ln||0;S.ft=S.ft||[];S.lesson=S.lesson||null;S.err=S.err||{d:'',n:0};S.rescue=null;S.ipa=S.ipa||{p:{},hist:[]};S.ipa.p=S.ipa.p||{};S.ipa.hist=S.ipa.hist||[];S.min=S.min||{};mergeVocab();if(S.err.d!==T())S.err={d:T(),n:0}}
 function exportHTML(){const c=document.documentElement.cloneNode(true);
 c.querySelectorAll('script:not(#seed)').forEach(x=>{x.textContent=x.textContent.split(SB_CODE).join('')});c.querySelector('#seed').textContent=JSON.stringify({seedId:Date.now()+'',data:S}).replace(/</g,'\\u003c');
-dl('offshore-english-garden-export.html','<!DOCTYPE html>\n'+c.outerHTML,'text/html')}
+dl('hoc-di-dot-lam-roi.html','<!DOCTYPE html>\n'+c.outerHTML,'text/html')}
 const cnt=s=>S.words.filter(w=>w.st==s).length,learned=()=>S.words.filter(w=>w.st!='New'),
 due=()=>S.words.filter(w=>w.st!='New'&&(w.next<=T()||w.st=='Difficult')),
 streak=()=>{let d=S.done.includes(T())?T():add(T(),-1),n=0;while(S.done.includes(d)){n++;d=add(d,-1)}return n},
@@ -160,11 +173,11 @@ let s=`<svg viewBox="0 0 300 290" width="100%" style="max-width:380px"><ellipse 
 if(st==0)s+=`<ellipse cx="150" cy="258" rx="9" ry="6" fill="#4a3320"/>`;
 else{s+=`<g class="${sick?'wilt':'sway'}" ${sick?'transform="rotate(4 150 260)"':''}><rect x="${150-W/2}" y="${260-h}" width="${W}" height="${h}" rx="3" fill="#7a5230"/>`;
 for(let i=0;i<n;i++){const x=150+(i%2?1:-1)*(12+(i*13)%(30+st*18)),y=262-h*(0.3+0.75*i/n),c=i<yel?'#d4b800':(st==1?'#8fd694':st==2?'#4cae5a':'#2e8b3d');
-s+=`<ellipse cx="${x}" cy="${y}" rx="${12+st*2}" ry="${8+st}" fill="${c}"/>`;if(e>=3||S.rescue){if(i<3)s+=`<circle cx="${x}" cy="${y}" r="3" fill="#5a3a1a"/>`}
-if(st>=3&&i%4==0)s+=`<circle cx="${x+6}" cy="${y-8}" r="4" fill="#f2a1c4"/>`}
+s+=`<ellipse class=lf style="animation-delay:-${(i*0.43).toFixed(2)}s" cx="${x}" cy="${y}" rx="${12+st*2}" ry="${8+st}" fill="${c}"/>`;if(e>=3||S.rescue){if(i<3)s+=`<circle cx="${x}" cy="${y}" r="3" fill="#5a3a1a"/>`}
+if(st>=3&&(st==4||i%4==0))s+=`<circle class=fl style="animation-delay:-${(i*0.31).toFixed(2)}s" cx="${x+6}" cy="${y-8}" r="4" fill="#f2a1c4"/>`}
 if(st==4)for(let i=0;i<Math.min(cnt('Remembered'),20);i++)s+=`<circle cx="${150+(i%2?1:-1)*(8+(i*17)%90)}" cy="${262-h*(0.35+0.6*i/20)+10}" r="6" fill="#d9362b"/>`;
 s+='</g>'}return s+'</svg>'}
-const MSG=['Ngày 1 – Bắt đầu hành trình','Bạn đã bắt đầu xây dựng nền tảng tiếng Anh','Cây đang phát triển tốt. Hãy duy trì!','Cây đã trưởng thành. Sắp về đích!','CONGRATULATIONS! YOUR ENGLISH GARDEN IS FULLY GROWN!<br><small>Bạn đã hoàn thành hành trình 120 ngày. Mỗi từ vựng là một trái ngọt từ sự kiên trì của bạn.</small>'];
+const MSG=['Cấp 1 – Hạt giống: bắt đầu hành trình','Cấp 2 – Mầm cây: nền tảng đang hình thành','Cấp 3 – Cây non: đang phát triển tốt, hãy duy trì!','Cấp 4 – Cây trưởng thành: sắp về đích!','CONGRATULATIONS! YOUR ENGLISH GARDEN IS FULLY GROWN!<br><small>Bạn đã hoàn thành hành trình 120 ngày. Mỗi từ vựng là một trái ngọt từ sự kiên trì của bạn.</small>'];
 const V={
 garden(){const l=learned().length;$('#main').innerHTML=`<div class=card style="text-align:center">${tree()}<h3>${MSG[stage()]}</h3>${S.rescue?'<p class=r>OH NO! YOUR TREE IS WILTING! Hãy hoàn thành RESCUE MODE.</p>':''}</div>
 <div class=grid><div class=k>Tổng từ<b>${S.words.length}</b></div><div class=k>Đã học<b>${l}</b></div><div class=k>Cần ôn<b>${due().length}</b></div><div class=k>Ghi nhớ tốt<b>${cnt('Remembered')}</b></div><div class=k>Lỗi hôm nay<b>${S.err.n}</b></div><div class=k>Lượt sai còn lại<b>${Math.max(0,3-S.err.n)}</b></div></div>
@@ -578,9 +591,9 @@ $('#main').innerHTML=`<div class=hero><p>${gt}${S.set.name?', '+esc(S.set.name):
 <h4>Kho từ vựng (${S.words.length} từ)</h4><div class=stack>${st.map(s=>`<i style="width:${cnt(s[0])*100/tot}%;background:${s[2]}"></i>`).join('')}</div><small>${st.map(s=>`<span class=dot style="background:${s[2]}"></span>${s[1]} ${cnt(s[0])}`).join('')}</small></div>`};
 V.lesson=LS;
 /* ===== UI mới: menu, tim, cứu hộ, kho từ vựng, Excel ===== */
-const NAV=[['home','home','🏠','Trang chủ'],['kho','kho','📚','Kho từ vựng'],['prac','lesson','✏️','Luyện tập'],['test','test','📝','Kiểm tra'],['prog','stats','📈','Tiến trình học'],['set','set','⚙️','Cài đặt']],
-GRP={home:'home',garden:'home',kho:'kho',lesson:'prac',learn:'prac',flash:'prac',review:'prac',test:'test',stats:'prog',road:'prog',set:'set'},
-CH={home:[['home','Tổng quan'],['garden','Khu vườn']],prac:[['lesson','Bài học hôm nay'],['learn','Học từ mới'],['flash','Flashcard'],['review','Ôn tập']],prog:[['stats','Thống kê'],['road','Lộ trình 120 ngày']]},
+const NAV=[['home','home','🏠','Trang chủ'],['kho','kho','📚','Kho từ vựng'],['ipa','ipa','🔤','Học IPA'],['listen','listen','🎧','Luyện nghe'],['speak','speak','🎤','Luyện phát âm'],['test','test','📝','Kiểm tra từ vựng'],['ipatest','ipatest','✅','Kiểm tra IPA'],['history','history','🕘','Lịch sử học tập'],['prog','stats','📈','Tiến độ học tập'],['garden','garden','🌳','Khu vườn của tôi'],['set','set','⚙️','Cài đặt']],
+GRP={home:'home',lesson:'home',learn:'home',flash:'home',review:'home',kho:'kho',ipa:'ipa',ipareview:'ipa',listen:'listen',speak:'speak',test:'test',ipatest:'ipatest',history:'history',stats:'prog',road:'prog',garden:'garden',set:'set'},
+CH={home:[['home','Tổng quan'],['lesson','Bài học hôm nay'],['learn','Học từ mới'],['flash','Flashcard'],['review','Ôn tập']],ipa:[['ipa','Bài học IPA'],['ipareview','Ôn tập IPA']],prog:[['stats','Thống kê'],['road','Lộ trình 120 ngày']]},
 HM=['','Oops! Từ này hơi khó nhằn rồi!','Đừng lo, sai một chút mới nhớ lâu!','Hết tim rồi, nhưng vẫn cứu được!'],
 hearts=()=>{const n=Math.max(0,3-S.err.n),h=window._hit;window._hit=0;return [0,1,2].map(i=>`<span class="ht${i>=n?' lost':''}${h&&i==n?' hit':''}">${i<n?'❤️':'🤍'}</span>`).join('')},
 KS={q:'',s:'',c:'',o:'new',p:1},PG=20,
@@ -613,14 +626,14 @@ function khoList(){let L=S.words.filter(w=>(!KS.q||nk(w.en+' '+w.vi).includes(nk
 if(KS.o=='az')L.sort((a,b)=>a.en.localeCompare(b.en));else if(KS.o=='bad')L.sort((a,b)=>b.bad-a.bad);else L=L.slice().reverse();
 const n=L.length,pg=Math.max(1,Math.ceil(n/PG));KS.p=Math.min(KS.p,pg);const P=L.slice((KS.p-1)*PG,KS.p*PG);
 $('#kc').textContent=S.words.length+' từ đã lưu'+(n!=S.words.length?' · '+n+' kết quả':'');
-$('#kl').innerHTML=n?`<div style="overflow:auto"><table><tr><th>English</th><th>Vietnamese</th><th>Example</th><th>Category</th><th>Status</th><th></th></tr>${P.map(w=>`<tr><td><b style="cursor:pointer" onclick="wView('${w.id}')">${esc(w.en)}</b></td><td>${esc(w.vi)}</td><td>${esc(w.ex)}</td><td>${esc(w.topic)}</td><td><span class="pl ${SC[stV(w)]}">${stV(w)}</span></td><td style="white-space:nowrap"><button class=s onclick="wForm('${w.id}')">Sửa</button><button class=d onclick="wDel('${w.id}')">Xóa</button></td></tr>`).join('')}</table></div>${pg>1?`<div class=pgn><button class=s ${KS.p<2?'disabled':''} onclick="KS.p--;khoList()">‹</button><span>Trang ${KS.p}/${pg}</span><button class=s ${KS.p>=pg?'disabled':''} onclick="KS.p++;khoList()">›</button></div>`:''}`:'<p style="text-align:center;color:var(--m)">'+(S.words.length?'Không tìm thấy từ nào khớp.':'Kho đang trống. Hãy thêm từ đầu tiên hoặc import file Excel!')+'</p>'}
+$('#kl').innerHTML=n?`<div style="overflow:auto"><table><tr><th>English</th><th>Vietnamese</th><th>IPA</th><th>Example</th><th>Category</th><th>Status</th><th></th></tr>${P.map(w=>`<tr><td><b style="cursor:pointer" onclick="wView('${w.id}')">${esc(w.en)}</b></td><td>${esc(w.vi)}</td><td>${esc(w.ipa)}</td><td>${esc(w.ex)}</td><td>${esc(w.topic)}</td><td><span class="pl ${SC[stV(w)]}">${stV(w)}</span></td><td style="white-space:nowrap"><button onclick="wIpa('${w.id}')">🔊 IPA</button><button class=s onclick="wForm('${w.id}')">Sửa</button><button class=d onclick="wDel('${w.id}')">Xóa</button></td></tr>`).join('')}</table></div>${pg>1?`<div class=pgn><button class=s ${KS.p<2?'disabled':''} onclick="KS.p--;khoList()">‹</button><span>Trang ${KS.p}/${pg}</span><button class=s ${KS.p>=pg?'disabled':''} onclick="KS.p++;khoList()">›</button></div>`:''}`:'<p style="text-align:center;color:var(--m)">'+(S.words.length?'Không tìm thấy từ nào khớp.':'Kho đang trống. Hãy thêm từ đầu tiên hoặc import file Excel!')+'</p>'}
 function wForm(id){const w=id&&S.words.find(x=>x.id==id)||{},f=(i,l,v,r)=>`<label>${l}${r?' *':''}<input id=${i} value="${esc(v||'')}" ${i=='f4'?'list=dl':''}></label>`;
-mopen(`<h3>${id?'Chỉnh sửa từ':'Thêm từ mới'}</h3>${f('f1','English Word',w.en,1)}${f('f2','Vietnamese Meaning',w.vi,1)}${f('f3','Example Sentence',w.ex)}${f('f5','Notes',w.note)}${f('f4','Category',w.topic)}<datalist id=dl>${[...new Set(S.words.map(x=>x.topic))].map(x=>`<option value="${esc(x)}">`).join('')}</datalist><p id=fe class=r></p><button onclick="wSave('${id||''}')">Lưu</button><button class=l onclick="mclose()">${id?'Hủy':'Xong'}</button>`);$('#f1').focus()}
+mopen(`<h3>${id?'Chỉnh sửa từ':'Thêm từ mới'}</h3>${f('f1','English Word',w.en,1)}${f('f2','Vietnamese Meaning',w.vi,1)}${f('f3','Example Sentence',w.ex)}${f('f6','IPA (phiên âm)',w.ipa)}${f('f5','Notes',w.note)}${f('f4','Category',w.topic)}<datalist id=dl>${[...new Set(S.words.map(x=>x.topic))].map(x=>`<option value="${esc(x)}">`).join('')}</datalist><p id=fe class=r></p><button onclick="wSave('${id||''}')">Lưu</button><button class=l onclick="mclose()">${id?'Hủy':'Xong'}</button>`);$('#f1').focus()}
 function wSave(id){const g=i=>$('#'+i).value.trim(),en=g('f1'),vi=g('f2');if(!en||!vi)return $('#fe').textContent='Cần nhập English và Vietnamese.';
 if(S.words.some(w=>w.id!=id&&nk(w.en)==nk(en)))return $('#fe').textContent='Từ này đã có trong kho.';
-if(id){Object.assign(S.words.find(x=>x.id==id),{en,vi,ex:g('f3'),note:g('f5'),topic:g('f4')||'Khác'})}else{const w=mk([en,vi,'','',g('f4')||'Khác',g('f3')],S.words.length);w.note=g('f5');S.words.push(w)}
+if(id){Object.assign(S.words.find(x=>x.id==id),{en,vi,ipa:g('f6'),ex:g('f3'),note:g('f5'),topic:g('f4')||'Khác'})}else{const w=mk([en,vi,g('f6'),'',g('f4')||'Khác',g('f3')],S.words.length);w.note=g('f5');S.words.push(w)}
 save();hdr();V.kho();toast(id?'Đã cập nhật!':'Đã thêm “'+en+'”. Não đang lên level!');
-if(id)mclose();else{['f1','f2','f3','f5'].forEach(i=>$('#'+i).value='');$('#f1').focus()}}
+if(id)mclose();else{['f1','f2','f3','f5','f6'].forEach(i=>$('#'+i).value='');$('#f1').focus()}}
 function wView(id){const w=S.words.find(x=>x.id==id);if(!w)return;const r=(a,b)=>b?`<p><small style="color:var(--m)">${a}</small><br>${esc(b)}</p>`:'';
 mopen(`<h3>${esc(w.en)} <span class="pl ${SC[stV(w)]}">${stV(w)}</span></h3>${r('IPA',w.ipa)}${r('Vietnamese',w.vi)}${r('Example',w.ex)}${r('Dịch ví dụ',w.exvi)}${r('Notes',w.note)}${r('Category',w.topic)}<p><small>Đúng ${w.ok} · Sai ${w.bad}${w.next?' · Ôn tiếp '+w.next:''}</small></p><button onclick="wForm('${w.id}')">Sửa</button><button class=l onclick="mclose()">Đóng</button>`)}
 function wDel(id){const w=S.words.find(x=>x.id==id);if(w&&confirm('Xóa từ "'+w.en+'"?')){S.words=S.words.filter(x=>x.id!=id);save();hdr();V.kho();toast('Đã xóa')}}
@@ -660,6 +673,120 @@ const x=mk([r.en,r.vi,'','',r.cat||'Khác',r.ex],S.words.length);x.note=r.note;S
 const er=R.filter(r=>r.err).length;save();hdr();V.kho();
 mopen(`<h3>Hoàn tất!</h3><p><b>Đã nhập thành công ${a} từ vựng!</b></p>${u?`<p>${u} từ đã tồn tại và được cập nhật.</p>`:''}${sk?`<p>${sk} từ đã tồn tại và được bỏ qua.</p>`:''}${er?`<p class=r>${er} dòng có lỗi. Vui lòng kiểm tra lại.</p><button class=s onclick="xlErr()">Tải báo cáo lỗi</button>`:''}<button onclick="mclose()">Xong</button>`)}
 function xlErr(){const q=s=>'"'+String(s).replace(/"/g,'""')+'"';dl('bao-cao-loi.csv','\ufeff'+['Dòng,English,Vietnamese,Lỗi'].concat(window._xi.filter(r=>r.err).map(r=>[r.n,r.en,r.vi,r.err].map(q).join(','))).join('\n'),'text/csv')}
+/* ===== v4: IPA, nghe, đọc, ôn tập, lịch sử, dashboard ===== */
+const IPA_RAW=`iː|v|close,front,spread,long|eat/iːt;seat/siːt;steel/stiːl|The team keeps the steel clean.|Đọc ngắn như "i" Việt, nhầm với /ɪ/ (sheep ≠ ship).|3:03
+ɪ|v|nclose,nfront,relaxed,short|it/ɪt;sit/sɪt;inspect/ɪnˈspekt|We inspect the fit of every ring.|Kéo dài thành /iː/; /ɪ/ ngắn, môi thả lỏng.|8:40
+uː|v|close,back,round,long|food/fuːd;cool/kuːl;tool/tuːl|Use the blue tool by the rule.|Đọc ngắn như "u" Việt; cần chu môi và kéo dài.|14:58
+ʊ|v|nclose,back,round,short|good/gʊd;book/bʊk;hook/hʊk|Put a good hook on it.|Đọc thành /uː/ dài; /ʊ/ ngắn, môi tròn lỏng.|19:57
+ʌ|v|omid,central,neutral,short|but/bʌt;shut/ʃʌt;rust/rʌst|Cut off the rust, then clean up.|Đọc thành "a" Việt hoặc /ɒ/; âm ngắn, lưỡi thả lỏng ở giữa.|26:20
+ə|v|cmid,central,neutral,short|about/əˈbaʊt;the/ðə;welder/ˈweldə|Ask another welder about it.|Đọc rõ thành "a"/"o"; /ə/ yếu, ngắn, ở âm tiết không nhấn.|26:20
+e|v|cmid,front,spread,short|bed/bed;pet/pet;weld/weld|Set up the test before you weld.|Đọc thành "ê" căng hoặc "e" Việt; miệng mở vừa, môi dẹt.|29:56
+æ|v|open,front,spread,short|apple/ˈæpl;back/bæk;crack/kræk|The tank has a flat crack.|Đọc thành /e/ (bad nghe như bed); hàm phải hạ thấp.|29:56
+ɑː|v|open,back,neutral,long|bark/bɑːk;park/pɑːk;arc/ɑːk|The arc is too hard for this part.|Đọc ngắn; cần há rộng và kéo dài "aa".|35:12
+ɜː|v|cmid,central,neutral,long|earth/ɜːθ;sir/sɜː;work/wɜːk|Turn off the burner before work.|Đọc thành "ơ" ngắn hoặc thêm /r/; /ɜː/ dài, môi dẹt, không cong lưỡi.|39:00
+ɔː|v|omid,back,round,long|order/ˈɔːdə;four/fɔː;port/pɔːt|Report the short port by the floor.|Đọc ngắn, thiếu tròn môi; giọng Anh-Anh không đọc /r/ cuối từ.|41:51
+ɒ|v|open,back,round,short|hot/hɒt;not/nɒt;spot/spɒt|The hot rod has a spot.|Đọc thành "ô" hoặc /ɔː/; /ɒ/ ngắn, môi hơi tròn, hàm thấp.|44:47
+ɪə|d|ɪ,ə|beer/bɪə;here/hɪə;gear/gɪə|Keep the gear near and clear.|Tách thành hai âm tiết "i-a"; phải trượt liền một âm tiết.|47:46
+eə|d|e,ə|hair/heə;bear/beə;repair/rɪˈpeə|Take care to repair the air line.|Tách "e-a" hoặc thêm /r/ cuối từ.|50:22
+ʊə|d|ʊ,ə|sure/ʃʊə;poor/pʊə;pure/pjʊə|Make sure the water is pure.|Đọc "u-a" tách rời; môi tròn rồi thả lỏng sang /ə/.|51:32
+eɪ|d|e,ɪ|april/ˈeɪprəl;play/pleɪ;paint/peɪnt|Paint the plate for safety.|Đọc thành "ê" đơn; phải trượt từ /e/ sang /ɪ/.|53:12
+əʊ|d|ə,ʊ|old/əʊld;slow/sləʊ;coating/ˈkəʊtɪŋ|The coating has a hole.|Đọc "ô" thuần; phải trượt từ /ə/ sang /ʊ/.|58:26
+aɪ|d|a,ɪ|wifi/ˈwaɪfaɪ;why/waɪ;pipe/paɪp|Check the pipe in good light.|Đọc "ai" quá ngắn, bỏ phần /ɪ/ cuối.|1:03:00
+ɔɪ|d|ɔ,ɪ|boy/bɔɪ;toy/tɔɪ;oil/ɔɪl|Oil the joint on the coil.|Đọc thành "oi" ngắn; bắt đầu bằng /ɔ/ tròn môi.|1:04:43
+aʊ|d|a,ʊ|now/naʊ;down/daʊn;round/raʊnd|Take it out and round it down.|Đọc "ao" quá ngắn; kết thúc môi tròn dần ở /ʊ/.|1:05:19
+aɪə|t|aɪ~ə~Môi mở rộng rồi khép dần và thả lỏng ở cuối~Miệng mở rộng rồi khép dần về giữa|fire/ˈfaɪə;desire/dɪˈzaɪə;wire/ˈwaɪə|Keep the wire away from the fire.|Tách thành "ai-a" quá rời hoặc bỏ /ə/ cuối; hãy trượt liền từ /aɪ/ sang /ə/.|1:06:42
+aʊə|t|aʊ~ə~Môi mở rộng rồi chu tròn dần và thả lỏng ở cuối~Miệng mở rộng rồi khép dần về giữa|shower/ˈʃaʊə;hour/ˈaʊə;power/ˈpaʊə|The power stays off for an hour.|Tách thành "ao-a" quá rời hoặc bỏ /ə/ cuối; hãy trượt liền từ /aʊ/ sang /ə/.|1:09:28
+juː|t|j~uː~Môi dẹt lúc đầu rồi chu tròn dần~Miệng mở nhỏ suốt cả âm|you/juː;new/njuː;unit/ˈjuːnɪt|You can use the new unit.|Đọc thành "u" Việt hoặc bỏ /j/; phải bắt đầu bằng /j/ rồi trượt sang /uː/ dài.|1:10:29
+j|c|palatal,approximant,1|yes/jes;view/vjuː;yard/jɑːd|Yes, use the yard.|Đọc thành "d/gi"; lưỡi nâng gần vòm cứng, môi dẹt.|1:10:29
+p|c|bilabial,plosive,0|pen/pen;happy/ˈhæpi;pressure/ˈpreʃə|Pipe pressure is high.|Quên bật hơi ở đầu từ, bỏ /p/ cuối từ.|1:19:55
+b|c|bilabial,plosive,1|ball/bɔːl;hobby/ˈhɒbi;bolt/bəʊlt|Blast the base before the bolt.|Đọc thành /p/ vì không rung dây thanh.|1:19:55
+f|c|labiodental,fricative,0|fun/fʌn;safe/seɪf;film/fɪlm|The film finish must fit.|Đọc thành "ph" hai môi; răng trên phải chạm môi dưới.|1:26:12
+v|c|labiodental,fricative,1|very/ˈveri;save/seɪv;valve/vælv|Close the valve on the vessel.|Đọc thành /w/ hoặc "d/gi"; răng trên chạm môi dưới và rung.|1:26:12
+t|c|alveolar,plosive,0|ten/ten;got/gɒt;steel/stiːl|Test the steel tank.|Bỏ /t/ cuối từ (test → "tes").|1:28:52
+θ|c|dental,fricative,0|thank/θæŋk;both/bəʊθ;thickness/ˈθɪknəs|Measure the thickness of the thread.|Đọc thành /s/ hoặc /t/; đặt đầu lưỡi giữa hai hàm răng.|1:32:12
+d|c|alveolar,plosive,1|dog/dɒg;word/wɜːd;dry/draɪ|Dry the deck before the drill.|Đọc thành /t/ hoặc bỏ /d/ cuối từ.|1:37:09
+ð|c|dental,fricative,1|that/ðæt;without/wɪˈðaʊt;other/ˈʌðə|This and that, the other one.|Đọc thành /d/ hoặc /z/; lưỡi giữa răng và rung.|1:38:03
+s|c|alveolar,fricative,0|see/siː;six/sɪks;surface/ˈsɜːfɪs|Seal the steel surface.|Bỏ /s/ cuối từ (số nhiều, -s).|1:40:23
+z|c|alveolar,fricative,1|zoo/zuː;cozy/ˈkəʊzi;zinc/zɪŋk|Zinc in this zone is the right size.|Đọc thành /s/ hoặc "d/gi"; cần rung dây thanh.|1:40:23
+ʃ|c|postalveolar,fricative,0|shop/ʃɒp;nation/ˈneɪʃn;shield/ʃiːld|Shield the shop from pressure.|Đọc thành /s/; môi chu nhẹ, lưỡi lùi.|1:41:50
+ʒ|c|postalveolar,fricative,1|vision/ˈvɪʒn;measure/ˈmeʒə;usual/ˈjuːʒuəl|Measure the usual vision.|Đọc thành /ʃ/ hoặc "gi"; cần rung dây thanh.|1:44:17
+tʃ|c|postalveolar,affricate,0|chat/tʃæt;teach/tiːtʃ;check/tʃek|Check the chain for each chip.|Đọc "ch" Việt bật mạnh hoặc /ʃ/; chặn /t/ rồi nhả sang /ʃ/.|1:46:45
+dʒ|c|postalveolar,affricate,1|gym/dʒɪm;change/tʃeɪndʒ;joint/dʒɔɪnt|Judge the joint with a gauge.|Đọc thành "gi/ch"; cần rung dây thanh.|1:51:40
+k|c|velar,plosive,0|key/kiː;work/wɜːk;cable/ˈkeɪbl|Coat the cable, then look for a crack.|Bỏ /k/ cuối từ (crack → "cra").|1:56:02
+g|c|velar,plosive,1|game/geɪm;hug/hʌg;gauge/geɪdʒ|Grind it with a good gauge.|Đọc thành /k/; cần rung dây thanh.|1:56:02
+m|c|bilabial,nasal,1|man/mæn;dumb/dʌm;metal/ˈmetl|Mark the metal and mix.|Bỏ /m/ cuối từ; phải khép môi.|1:57:23
+n|c|alveolar,nasal,1|no/nəʊ;knife/naɪf;nozzle/ˈnɒzl|Clean the nozzle and the nut.|Nhầm /n/ cuối với /ŋ/; đầu lưỡi phải chạm lợi.|1:58:35
+ŋ|c|velar,nasal,1|uncle/ˈʌŋkl;angry/ˈæŋgri;coating/ˈkəʊtɪŋ|The long ring needs coating.|Đọc thành "n" hoặc thêm /g/; gốc lưỡi chạm vòm mềm.|1:59:06
+l|c|alveolar,lateral,1|please/pliːz;feel/fiːl;level/ˈlevl|Lift the level and look for a leak.|"l" cuối từ đọc thành "o/u"; đầu lưỡi chạm lợi.|2:01:17
+w|c|labialvelar,approximant,1|one/wʌn;what/wɒt;weld/weld|Weld the wire at work.|Đọc thành /v/; môi chu tròn rồi mở, không chạm răng.|2:06:07
+r|c|postalveolar,approximant,1|right/raɪt;wrong/rɒŋ;rust/rʌst|Red rust on the rope.|Đọc rung lưỡi như "r" Việt; lưỡi cong nhẹ, không chạm vòm.|2:06:30
+h|c|glottal,fricative,0|who/huː;hungry/ˈhʌŋgri;hole/həʊl|Heat the hole, then hammer it.|Bỏ /h/ hoặc đọc "kh"; chỉ thở ra nhẹ từ cổ họng.|2:12:30`;
+const IPAL=IPA_RAW.trim().split('\n').map(l=>{const a=l.split('|');return{sym:a[0],k:a[1],f:a[2].split(/[,~]/),w:a[3].split(';').map(x=>x.split('/')),s:a[4],m:a[5],t:a[6]}}),IPAD=Object.fromEntries(IPAL.map(x=>[x.sym,x])),
+INT=[1,3,7,14,30],LC={},rnd=a=>a[Math.floor(Math.random()*a.length)],shuffle=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]),
+PM={};'iː ɪ,e æ,ʌ ɑː,ɒ ɔː,ʊ uː,ɜː ə,p b,t d,k g,f v,θ ð,s z,ʃ ʒ,tʃ dʒ,n ŋ,l r,w v,eɪ e,juː uː,aɪə aɪ,aʊə aʊ,aɪ ɔɪ,ɪə eə,ʊə ɔː,əʊ aʊ'.split(',').forEach(p=>{const [a,b]=p.split(' ');PM[a]=b;PM[b]=PM[b]||a});
+const P=s=>S.ipa.p[s]||(S.ipa.p[s]={lv:0,ok:0,bad:0,next:'',last:'',done:''}),mast=p=>p&&p.lv>=3&&p.ok+p.bad>0&&p.ok/(p.ok+p.bad)>=.8,learnedI=x=>S.ipa.p[x.sym]&&S.ipa.p[x.sym].done;
+function ipaDesc(x){const H={close:'cao, gần vòm miệng',nclose:'khá cao',cmid:'ở mức trung bình',omid:'hơi thấp',open:'thấp, hàm hạ xuống'},B={front:'phía trước',nfront:'khá trước',central:'ở giữa',nback:'khá sau',back:'phía sau'},L={spread:'dẹt, kéo sang hai bên',relaxed:'thả lỏng, hơi dẹt',neutral:'tự nhiên, không tròn',round:'tròn'},O={close:'mở nhỏ',nclose:'mở khá nhỏ',cmid:'mở vừa',omid:'mở khá rộng',open:'mở rộng'},f=x.f;
+if(x.k=='v')return{name:'Nguyên âm đơn '+(f[3]=='long'?'dài':'ngắn'),tongue:`Lưỡi ${H[f[0]]}, đặt ${B[f[1]]||B.back}.`,lips:`Môi ${L[f[2]]}.`,mouth:`Miệng ${O[f[0]]}.`,air:`Hơi thoát liên tục qua miệng, dây thanh rung; âm ${f[3]=='long'?'dài':'ngắn'}.`};
+if(x.k=='d'){const M={e:'mở vừa',ɪ:'mở nhỏ',a:'mở rộng',ɔ:'mở khá rộng, môi tròn',ə:'mở vừa, thả lỏng'},E={ɪ:'khép dần, môi dẹt',ʊ:'khép dần, môi tròn',ə:'thả lỏng về giữa'};return{name:'Nguyên âm đôi (một âm tiết, hai vị trí)',tongue:`Lưỡi bắt đầu như âm /${f[0]}/ rồi trượt liền mạch sang /${f[1]}/, không dừng giữa chừng.`,lips:`Môi di chuyển cùng lưỡi: ${E[f[1]]}.`,mouth:`Miệng ${M[f[0]]} rồi ${E[f[1]]}.`,air:'Một hơi liền mạch; âm đầu dài và rõ hơn âm sau.'}}
+if(x.k=='t')return{name:'Tổ hợp nguyên âm (video xếp chung bảng nguyên âm)',tongue:`Bắt đầu như /${f[0]}/ rồi trượt liền sang /${f[1]}/.`,lips:f[2]+'.',mouth:f[3]+'.',air:'Đọc liền một hơi, không ngắt giữa chừng.'}
+const PL={bilabial:'hai môi',labiodental:'răng trên và môi dưới',dental:'đầu lưỡi giữa hai hàm răng',alveolar:'đầu lưỡi chạm hoặc gần lợi sau răng trên',postalveolar:'mặt lưỡi nâng gần phía sau lợi',velar:'gốc lưỡi chạm vòm mềm',glottal:'không dùng lưỡi, hơi thoát từ cổ họng',palatal:'thân lưỡi nâng gần vòm cứng',labialvelar:'môi chu tròn, gốc lưỡi nâng'},MN={plosive:['âm nổ','Hơi bị chặn hoàn toàn rồi bật ra đột ngột.'],fricative:['âm xát','Hơi đi qua khe hẹp, tạo tiếng xì kéo dài.'],affricate:['âm tắc xát','Chặn hơi như âm nổ rồi nhả ra thành âm xát.'],nasal:['âm mũi','Miệng chặn, hơi đi qua mũi.'],lateral:['âm bên','Hơi thoát qua hai bên lưỡi.'],approximant:['âm gần','Hai bộ phận lại gần nhau, hơi thoát nhẹ, không tạo tiếng xát.']},m=MN[f[1]],v=f[2]=='1';
+return{name:`Phụ âm ${v?'hữu thanh':'vô thanh'} (${m[0]})`,tongue:`Vị trí: ${PL[f[0]]}.`,lips:/bilabial|labiodental/.test(f[0])?(f[0]=='bilabial'?'Khép hai môi.':'Môi dưới chạm răng trên.'):/postalveolar|labialvelar/.test(f[0])?'Môi chu tròn nhẹ.':'Môi thả lỏng.',mouth:'Miệng mở nhỏ đến vừa.',air:`${m[1]} ${v?'Dây thanh rung (đặt tay lên cổ để cảm nhận).':'Dây thanh không rung.'}`}}
+function speak(t,r){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t),vs=speechSynthesis.getVoices();u.lang='en-GB';u.rate=r||.85;const v=vs.find(v=>v.lang=='en-GB')||vs.find(v=>/^en/.test(v.lang));if(v)u.voice=v;speechSynthesis.speak(u)}catch(e){toast('Trình duyệt chưa hỗ trợ đọc âm thanh')}}
+function micCheck(w,i){const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R)return toast('Trình duyệt này chưa hỗ trợ nhận giọng nói. Hãy dùng Chrome hoặc Edge, hoặc bấm "Đã đọc".');const r=new R(),n=s=>s.toLowerCase().replace(/[^a-z ]/g,'').trim();r.lang='en-GB';r.maxAlternatives=3;
+r.onresult=e=>{const h=[...e.results[0]].map(a=>a.transcript),ok=h.some(t=>n(t)==n(w)),msg=ok?'✅ Máy nghe đúng':'❌ Máy nghe là: “'+h[0]+'”',el=document.getElementById('mr'+i);if(el)el.textContent=msg;else toast(msg);if(ok&&i>=0)rdMark(i)};
+r.onerror=()=>toast('Không dùng được micro. Hãy cho phép quyền micro cho trang web.');r.start();toast('Đang nghe... hãy đọc: '+w)}
+/* --- câu hỏi --- */
+function dist(sym,ip){const same=IPAL.filter(x=>x.k==IPAD[sym].k&&x.sym!=sym).map(x=>x.sym),c=[PM[sym]].concat(shuffle(same),shuffle(IPAL.map(x=>x.sym))).filter(c=>c&&c!=sym&&!ip.includes(c));return[...new Set(c)].slice(0,2)}
+function mkQ(t,sym,av){const x=IPAD[sym],ws=x.w.filter(w=>w[0]!=av),[w,ip]=rnd(ws.length?ws:x.w),ds=dist(sym,ip);let o,pr,say='';
+if(t=='a'){o=[sym,...ds];pr='🔊 Nghe từ và chọn âm có trong từ';say=w}
+else if(t=='b'){o=[ip,...ds.map(d=>ip.replace(sym,d))];pr=`Phiên âm đúng của <b>${esc(w)}</b> là?`}
+else{const ow=IPAL.filter(y=>y.sym!=sym).flatMap(y=>y.w).filter((z,i,a)=>!z[1].includes(sym)&&z[0]!=w&&a.findIndex(y=>y[0]==z[0])==i);o=[w,...shuffle(ow).slice(0,2).map(z=>z[0])];pr=`Từ nào chứa âm <b>/${sym}/</b>?`}
+const c=o[0];o=shuffle(o);return{t,sym,w,ip,o,a:o.indexOf(c),pr,say,why:`<b>${esc(w)}</b> đọc là /${esc(ip)}/, chứa âm /${sym}/. ${esc(x.m)}`}}
+let QZ=null;
+function qzStart(list,cfg){QZ={list,i:0,ok:0,log:[],wrong:[],x:0,cfg};qzShow()}
+function qzShow(){const q=QZ.list[QZ.i];if(!q)return QZ.cfg.end();const n=QZ.list.length;
+$('#main').innerHTML=`<div class=card><small>${esc(QZ.cfg.title)} · Câu ${QZ.i+1}/${n}</small><div class=bar><i style="width:${QZ.i*100/n}%"></i></div><h3>${q.pr}</h3>${q.say?`<button class=s onclick="speak('${q.say}')">🔊 Nghe lại</button>`:''}${q.o.map((o,j)=>`<button class=opt onclick="qzAns(${j})">${q.t=='c'?esc(o):'/'+esc(o)+'/'}</button>`).join('')}</div>`;if(q.say)speak(q.say)}
+function qzAns(j){const q=QZ.list[QZ.i],ok=j==q.a,c=QZ.cfg;if(c.scored){const p=P(q.sym);ok?p.ok++:p.bad++;QZ.log.push({sym:q.sym,ok})}
+if(ok)QZ.ok++;else{QZ.wrong.push(q);if(c.scored&&c.extra&&QZ.x<2){QZ.x++;QZ.list.push(mkQ(q.t,q.sym,q.w))}}
+$('#main').innerHTML=`<div class=card><h3 class="${ok?'g':'r'}">${ok?'Đúng! Não đang lên level!':'Chưa đúng. Đừng lo, sai một chút mới nhớ lâu!'}</h3><p>${q.why}</p><button class=s onclick="speak('${q.w}')">🔊 Nghe lại âm mẫu</button><button onclick="QZ.i++;qzShow()">Tiếp tục</button></div>`;save()}
+function ipaEnd(){const c=QZ.cfg,n=QZ.list.length,pct=Math.round(QZ.ok*100/n),by={},pass=pct>=80;QZ.log.forEach(x=>(by[x.sym]=by[x.sym]||[]).push(x.ok));
+Object.keys(by).forEach(s=>{const p=P(s),good=c.kind=='lesson'?pass:by[s].every(x=>x);if(good){if(c.kind=='lesson')p.done=p.done||T();p.lv=Math.min(5,p.lv+1);p.next=add(T(),INT[Math.min(p.lv-1,4)])}else{p.lv=Math.max(0,p.lv-1);p.next=add(T(),1)}p.last=T()});
+S.ipa.hist.push({d:T(),k:c.kind,pct,n,syms:Object.keys(by)});if(pass&&!S.done.includes(T()))S.done.push(T());save();hdr();
+const nx=IPAL.find(x=>!learnedI(x)),sym=c.sym;
+$('#main').innerHTML=`<div class=card style="text-align:center"><h2 class="${pass?'g':'r'}">${pass?'Excellent! Bạn đạt '+pct+'%':'Chưa đạt: '+pct+'% (cần từ 80%)'}</h2><p>${QZ.ok}/${n} câu đúng. ${pass?(c.kind=='lesson'?'Bài học đã được tính là hoàn thành và lưu để ôn tập.':'Kết quả đã được lưu.'):'Âm này được đưa vào danh sách cần ôn vào ngày mai.'}</p></div>
+${QZ.wrong.length?`<div class=card><h3>Giải thích câu sai</h3>${QZ.wrong.map(q=>`<p>${q.why} <button class=s onclick="speak('${q.w}')">🔊</button></p>`).join('')}</div>`:''}
+<div class=card>${c.kind=='lesson'?(pass?(nx?`<button onclick="ipaLesson('${nx.sym}',1)">Học âm tiếp theo: /${nx.sym}/</button>`:''):`<button onclick="ipaLesson('${sym}',1)">Học lại bài /${sym}/</button>`):`<button onclick="${c.kind=='review'?"go('ipareview')":c.kind=='listen'?"go('listen')":"go('ipatest')"}">Làm thêm</button>`}<button class=s onclick="go('ipa')">Về danh sách IPA</button></div>`}
+/* --- bài học 6 bước --- */
+function rdMark(i){LC.rd=LC.rd||{};LC.rd[i]=1;const b=document.getElementById('rn');if(b)b.disabled=Object.keys(LC.rd).length<3;const e=document.getElementById('rk'+i);if(e)e.textContent='✔'}
+function ipaLesson(sym,st){const x=IPAD[sym],d=ipaDesc(x),H=`<small>Âm /${sym}/ · Bước ${st}/6</small><div class=bar><i style="width:${st*100/6}%"></i></div>`,m=$('#main'),nx=s=>`ipaLesson('${sym}',${s})`;LC.sym=sym;
+if(st==1)m.innerHTML=`<div class=card>${H}<h1 style="font-size:64px;margin:.1em 0;color:var(--g)">/${sym}/</h1><p><b>${d.name}</b></p>${x.t?`<p><a href="https://youtu.be/DyYFwoITfXY?t=${x.t.split(':').reduce((p,q)=>p*60+ +q,0)}" target=_blank rel=noopener>▶ Xem đoạn dạy âm này trong video (${x.t})</a></p>`:''}<table>${[['Vị trí lưỡi',d.tongue],['Môi',d.lips],['Độ mở miệng',d.mouth],['Luồng hơi',d.air]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td></tr>`).join('')}</table><h4>Từ ví dụ</h4>${x.w.map(w=>`<p>${esc(w[0])} <b>/${esc(w[1])}/</b></p>`).join('')}<h4>Câu ví dụ</h4><p>${esc(x.s)}</p><h4>Lỗi người Việt hay mắc</h4><p class=r>${esc(x.m)}</p><button onclick="${nx(2)}">Tiếp: Nghe âm mẫu</button></div>`;
+else if(st==2)m.innerHTML=`<div class=card>${H}<h3>Nghe âm mẫu (giọng Anh-Anh)</h3><p>Âm /${sym}/ được phát qua các từ ví dụ. Nghe vài lần, kể cả chế độ chậm.</p>${x.w.map(w=>`<div class=row><span><b>${esc(w[0])}</b> /${esc(w[1])}/</span><button class=s onclick="speak('${w[0]}')">🔊</button><button class=s onclick="speak('${w[0]}',.55)">🐢</button></div>`).join('')}<div class=row><span>${esc(x.s)}</span><button class=s onclick="speak(${JSON.stringify(x.s).replace(/"/g,'&quot;')})">🔊</button></div><button onclick="${nx(3)}">Tiếp: Nghe và phân biệt</button></div>`;
+else if(st==3)qzStart([mkQ('a',sym),mkQ('a',sym,null)],{title:'Nghe và phân biệt',scored:false,end:()=>ipaLesson(sym,4)});
+else if(st==4){LC.rd={};m.innerHTML=`<div class=card>${H}<h3>Luyện đọc theo âm mẫu</h3><p>Nghe rồi đọc to từng từ. Bấm 🎤 để máy kiểm tra (Chrome/Edge), hoặc bấm "Đã đọc" nếu không dùng được mic.</p>${x.w.map((w,i)=>`<div class=row><span><b>${esc(w[0])}</b> /${esc(w[1])}/ <small id=mr${i}></small> <small id=rk${i}></small></span><button class=s onclick="speak('${w[0]}')">🔊</button><button class=s onclick="micCheck('${w[0]}',${i})">🎤</button><button class=s onclick="rdMark(${i})">Đã đọc</button></div>`).join('')}<button id=rn disabled onclick="${nx(5)}">Tiếp: Nhận diện IPA của từ</button></div>`}
+else if(st==5)qzStart([mkQ('b',sym),mkQ('b',sym,null)],{title:'Nhận diện IPA của từ',scored:false,end:()=>ipaLesson(sym,6)});
+else qzStart(['a','a','b','b','c','c'].map(t=>mkQ(t,sym)),{title:'Kiểm tra cuối bài',scored:true,kind:'lesson',sym,extra:true,end:ipaEnd})}
+/* --- các trang --- */
+V.ipa=function(){const nx=IPAL.find(x=>!learnedI(x)),dn=ipaDue().filter(z=>z.sc>=30).length,gp=[['v','12 nguyên âm đơn'],['d','8 nguyên âm đôi'],['t','3 nguyên âm ghép (juː, aɪə, aʊə)'],['c','24 phụ âm']];
+$('#main').innerHTML=`<div class=hero><h2>Học IPA từ con số 0</h2><p>Mỗi ngày một âm mới (10–15 phút): học, nghe, luyện, kiểm tra. Phải đạt từ 80% mới tính là hoàn thành.</p>${nx?`<button class=cta onclick="ipaLesson('${nx.sym}',1)">BÀI HÔM NAY: /${nx.sym}/ →</button>`:'<p>Bạn đã học đủ 47 âm! Hãy ôn tập đều đặn.</p>'}</div><div class=card><b>${dn}</b> âm cần ôn tập. <button class=s onclick="go('ipareview')">Ôn tập IPA</button></div>${gp.map(g=>`<div class=card><h3>${g[1]}</h3><div class=ig>${IPAL.filter(x=>x.k==g[0]).map(x=>{const p=S.ipa.p[x.sym],c=!p||!p.done?'lav':mast(p)?'mint':p.next<=T()?'pink':'sky';return`<button class="ib ${c}" onclick="ipaLesson('${x.sym}',1)">${x.sym}</button>`}).join('')}</div></div>`).join('')}<small>Màu: kem = chưa học · xanh nhạt = đang học · xanh lá = thành thạo · hồng = cần ôn</small>`};
+function ipaDue(){return IPAL.filter(learnedI).map(x=>{const p=S.ipa.p[x.sym],r=p.bad/(p.ok+p.bad||1);return{x,p,sc:(r>.3&&p.bad>=2?100:0)+(p.lv<=1?50:0)+(p.next<=T()?30:0)+(!mast(p)?10:0)+Math.min(p.bad,10)}}).sort((a,b)=>b.sc-a.sc)}
+const rs=z=>z.p.bad/(z.p.ok+z.p.bad||1)>.3&&z.p.bad>=2?'hay sai':z.p.lv<=1?'mới học':z.p.next<=T()?'đến hạn '+z.p.next:'chưa thành thạo';
+V.ipareview=function(){const d=ipaDue().filter(z=>z.sc>=30);$('#main').innerHTML=`<div class=card><h3>Ôn tập IPA</h3>${d.length?`<p>Ưu tiên: âm hay sai, âm mới học, âm đến hạn, âm chưa thành thạo. Lịch ôn: 1, 3, 7, 14, 30 ngày.</p>${d.slice(0,8).map(z=>`<div class=row><span><b>/${z.x.sym}/</b> <small>${rs(z)}</small></span></div>`).join('')}<button onclick="ipaRev()">Bắt đầu ôn (${Math.min(4,d.length)} âm)</button>`:'<p>Chưa có âm nào cần ôn. Hãy học bài IPA đầu tiên nhé! 🌱</p>'}</div>`};
+function ipaRev(){const L=[];ipaDue().filter(z=>z.sc>=30).slice(0,4).forEach(z=>['a','b'].forEach(t=>L.push(mkQ(t,z.x.sym))));qzStart(L,{title:'Ôn tập IPA',scored:true,kind:'review',end:ipaEnd})}
+function ipaDrill(kind,all){const pool=all?IPAL:IPAL.filter(learnedI);if(!pool.length)return toast('Bạn chưa học âm nào. Hãy học bài IPA đầu tiên nhé!');const L=[];for(let i=0;i<10;i++)L.push(mkQ(kind=='listen'?'a':rnd(['a','b','c']),rnd(pool).sym));qzStart(L,{title:kind=='listen'?'Luyện nghe':'Kiểm tra IPA',scored:true,kind,end:ipaEnd})}
+V.listen=function(){$('#main').innerHTML=`<div class=card><h3>Luyện nghe</h3><p>Nghe từ, chọn âm có trong từ (giọng Anh-Anh, 10 câu).</p><button onclick="ipaDrill('listen',false)">Nghe các âm đã học (${IPAL.filter(learnedI).length})</button><button class=s onclick="ipaDrill('listen',true)">Nghe cả 47 âm</button></div>`};
+V.ipatest=function(){const n=IPAL.filter(learnedI).length;$('#main').innerHTML=`<div class=card><h3>Kiểm tra IPA</h3><p>10 câu hỗn hợp trên các âm bạn đã học (${n} âm). Điểm được lưu vào lịch sử và lịch ôn tập.</p><button onclick="ipaDrill('test',false)" ${n?'':'disabled'}>Bắt đầu kiểm tra</button>${n?'':'<p class=r>Hãy hoàn thành ít nhất một bài học IPA trước.</p>'}</div>`};
+const wRow=(w,ip,i)=>{const j=JSON.stringify(w).replace(/"/g,'&quot;');return`<div class=row><span><b>${esc(w)}</b> /${esc(String(ip).replace(/^\/|\/$/g,''))}/ <small id=mr${i}></small></span><button class=s onclick="speak(${j})">🔊</button><button class=s onclick="micCheck(${j},${i})">🎤</button></div>`};
+V.speak=function(){const sel=window._sp||'iː';$('#main').innerHTML=`<div class=card><h3>Luyện phát âm</h3><p>Chọn âm, nghe mẫu rồi đọc theo. Máy chỉ kiểm tra xem nó có nghe ra đúng từ không (không chấm từng âm). Cần Chrome hoặc Edge và cho phép micro.</p><select onchange="window._sp=this.value;V.speak()">${IPAL.map(x=>`<option ${x.sym==sel?'selected':''}>${x.sym}</option>`).join('')}</select>${IPAD[sel].w.map((w,i)=>wRow(w[0],w[1],i)).join('')}</div><div class=card><h3>Từ trong kho</h3>${shuffle(S.words.filter(w=>w.ipa)).slice(0,8).map((w,i)=>wRow(w.en,w.ipa,10+i)).join('')||'<p>Chưa có từ nào có phiên âm.</p>'}</div>`};
+V.history=function(){const H=S.ipa.hist.slice().reverse(),KN={lesson:'Bài học IPA',test:'Kiểm tra IPA',review:'Ôn tập IPA',listen:'Luyện nghe'};$('#main').innerHTML=`<div class=card><h3>Lịch sử học tập</h3><p>Ngày đã hoàn thành: ${S.done.length} · Streak: ${streak()}</p>${H.length?`<div style="overflow:auto"><table><tr><th>Ngày</th><th>Nội dung</th><th>Âm</th><th>Điểm</th></tr>${H.slice(0,100).map(h=>`<tr><td>${h.d}</td><td>${KN[h.k]||h.k}</td><td>${esc(h.syms.slice(0,6).map(s=>'/'+s+'/').join(' '))}</td><td><span class="pl ${h.pct>=80?'mint':'pink'}">${h.pct}%</span></td></tr>`).join('')}</table></div>`:'<p>Chưa có lịch sử học IPA. Hãy bắt đầu bài đầu tiên!</p>'}</div><div class=card><h4>Các ngày đã hoàn thành bài học</h4><p>${S.done.slice(-30).reverse().join(' · ')||'—'}</p></div>`};
+V.stats=function(){const Pv=Object.values(S.ipa.p),ds=Pv.filter(p=>p.done).length,ms=Pv.filter(mast).length,h=S.ipa.hist.filter(x=>x.k=='test'),avg=h.length?Math.round(h.reduce((a,x)=>a+x.pct,0)/h.length)+'%':'–',d7=[...Array(7)].map((_,i)=>add(T(),i-6)),mins=d7.map(d=>S.min[d]||0);
+$('#main').innerHTML=`<div class=grid>${[['Từ vựng đã học',learned().length],['Từ đã thuộc',cnt('Remembered')],['Từ cần ôn',due().length],['Âm IPA đã học',ds+'/47'],['Âm IPA thành thạo',ms],['Điểm KT IPA (TB)',avg],['Streak',streak()],['Học hôm nay',(S.min[T()]||0)+' phút'],['Khu vườn','Cấp '+(stage()+1)+'/5']].map(x=>`<div class=k>${x[0]}<b>${x[1]}</b></div>`).join('')}</div><div class=card><h3>Thời gian học 7 ngày (phút)</h3>${bars(mins,Math.max(10,...mins),d7.map(d=>d.slice(5)),x=>x>0)}</div><div class=card><h3>Điểm kiểm tra IPA gần đây</h3>${h.length?bars(h.slice(-10).map(x=>x.pct),100,h.slice(-10).map(x=>x.d.slice(5)),x=>x>=80)+'<small>Xanh: đạt 80% trở lên</small>':'<p>Chưa có bài kiểm tra IPA.</p>'}</div>`};
+/* --- phân tích IPA của từ trong kho --- */
+const SYMS=IPAL.map(x=>x.sym).sort((a,b)=>b.length-a.length);
+function wIpa(id){const w=S.words.find(x=>x.id==id);if(!w)return;const ip=String(w.ipa||'').replace(/^\/|\/$/g,'').replace(/ɡ/g,'g'),j=s=>JSON.stringify(s).replace(/"/g,'&quot;');
+if(!ip)return mopen(`<h3>${esc(w.en)}</h3><p>Từ này chưa có phiên âm IPA. Bấm Sửa để nhập.</p><button onclick="wForm('${w.id}')">Sửa từ</button><button class=l onclick="mclose()">Đóng</button>`);
+const tk=[...new Set(ip.match(new RegExp(SYMS.join('|'),'g'))||[])],st=esc(ip).replace(/ˈ([^ˈˌ]*?(?:eɪ|aɪ|ɔɪ|əʊ|aʊ|ɪə|eə|ʊə|[iɪeæʌɑɒɔʊuəɜ]ː?))/,'ˈ<b>$1</b>');
+mopen(`<h3>${esc(w.en)}</h3><p>${esc(w.vi)}</p><p style="font-size:22px">/${st}/</p><p><small>Trọng âm chính: phần in đậm sau dấu ˈ.</small></p><button onclick="speak(${j(w.en)})">🔊 Nghe</button><button class=s onclick="speak(${j(w.en)},.55)">🐢 Chậm</button><button class=s onclick="micCheck(${j(w.en)},-1)">🎤 Đọc thử</button><h4>Các âm trong từ</h4>${tk.map(t=>`<button class=l onclick="mclose();go('ipa');ipaLesson('${t}',1)">/${t}/</button>`).join('')||'—'}${w.ex?`<h4>Ví dụ</h4><p>${esc(w.ex)} <button class=l onclick="speak(${j(w.ex)})">🔊</button></p>`:''}<p><button class=l onclick="mclose()">Đóng</button></p>`)}
+setInterval(()=>{if(document.visibilityState==='visible'&&S&&S.min){S.min[T()]=(S.min[T()]||0)+1;save()}},60000);
 
 init();hdr();go('home');cloudStatus(cloudSt);cloudPull();
 </script></body></html>
